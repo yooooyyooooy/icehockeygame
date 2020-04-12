@@ -14,7 +14,11 @@ public class Stick implements Movable {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	public void hit() {
+		
+	}
+	
 	public double getX_coordinate() {
 		return x_coordinate;
 	}

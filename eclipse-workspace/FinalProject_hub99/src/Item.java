@@ -8,8 +8,8 @@ public class Item extends Oblect {
 		switch(name) {
 			case "Bomb":
 				this.setName("Bomb");
-			case "Illusion":
-				this.setName("Illusion");
+			case "Ghost":
+				this.setName("Ghost");
 		}
 	}
 	

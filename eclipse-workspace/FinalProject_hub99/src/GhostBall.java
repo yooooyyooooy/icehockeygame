@@ -1,9 +1,9 @@
 
-public class IllusionBall extends Oblect implements Movable {
+public class GhostBall extends Oblect implements Movable {
 	
 	final int count = 2;
 	
-	public IllusionBall(double x, double y) {
+	public GhostBall(double x, double y) {
 		super(x, y);
 		super.setSpeed(super.getSpeed());
 		// TODO Auto-generated constructor stub
