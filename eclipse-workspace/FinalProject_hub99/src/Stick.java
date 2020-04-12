@@ -1,11 +1,11 @@
 
-public class Board implements Movable {
+public class Stick implements Movable {
 	
 	final double radius = 20; //to be edited
 	protected double x_coordinate;
 	protected double y_coordinate;
 	
-	public Board(double x, double y) {
+	public Stick(double x, double y) {
 		this.setX_coordinate(x);
 		this.setY_coordinate(y);
 	}
@@ -15,11 +15,6 @@ public class Board implements Movable {
 		
 	}
 
-	@Override
-	public void bounce(double x, double y) {
-		// TODO Auto-generated method stub
-		
-	}
 	public double getX_coordinate() {
 		return x_coordinate;
 	}

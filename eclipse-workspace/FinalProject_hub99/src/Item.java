@@ -1,26 +1,12 @@
 
-public abstract class Ball {
-	final double radius = 20; //to be edited
+public abstract class Item {
 	protected double x_coordinate;
 	protected double y_coordinate;
-	protected double speed;
 	
-	public Ball(double x, double y) {
+	public Item(double x, double y) {
 		this.setX_coordinate(x);
 		this.setY_coordinate(y);
-		this.setSpeed(0);
 	}
-	
-	public abstract void bounce();
-	
-	public double getSpeed() {
-		return speed;
-	}
-
-	public void setSpeed(double speed) {
-		this.speed = speed;
-	}
-
 	public double getX_coordinate() {
 		return x_coordinate;
 	}
@@ -36,4 +22,6 @@ public abstract class Ball {
 	public void setY_coordinate(double y_coordinate) {
 		this.y_coordinate = y_coordinate;
 	}
+
+	public abstract void activate();
 }

@@ -1,11 +1,14 @@
 
-public class NormalBall extends Ball implements Movable, Transitionable {
-
-	public NormalBall(double x, double y) {
+public class IllusionBall extends Ball implements Movable {
+	
+	final int count = 2;
+	
+	public IllusionBall(double x, double y) {
 		super(x, y);
 		// TODO Auto-generated constructor stub
 	}
 
+	
 	@Override
 	public void move(double x, double y) {
 		// TODO Auto-generated method stub
@@ -14,12 +17,6 @@ public class NormalBall extends Ball implements Movable, Transitionable {
 
 	@Override
 	public void bounce() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void transtion() {
 		// TODO Auto-generated method stub
 		
 	}
