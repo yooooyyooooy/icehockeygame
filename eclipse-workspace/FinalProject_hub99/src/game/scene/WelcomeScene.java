@@ -53,12 +53,12 @@ public class WelcomeScene extends VBox {
 			}
 		});
 		
-//		backgroundImg = new Image();
-//		
-//		this.setBackground(new Background(new BackgroundImage(backgroundImg, BackgroundRepeat.NO_REPEAT,
-//				BackgroundRepeat.NO_REPEAT,
-//				BackgroundPosition.DEFAULT,
-//				BackgroundSize.DEFAULT)));
+		backgroundImg = new Image("background.png");
+		
+		this.setBackground(new Background(new BackgroundImage(backgroundImg, BackgroundRepeat.NO_REPEAT,
+				BackgroundRepeat.NO_REPEAT,
+				BackgroundPosition.DEFAULT,
+				BackgroundSize.DEFAULT)));
 		
 		this.getChildren().addAll(name, playButton, tutorialButton);
 	}
