@@ -1,5 +1,6 @@
 package Main;
 
+import game.scene.PlayerScene;
 import game.scene.WelcomeScene;
 import game.scene.WinningScene;
 import javafx.application.Application;
@@ -19,7 +20,7 @@ public class Main extends Application {
 			@Override
 			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				WinningScene b = new WinningScene("PM wins");
+				PlayerScene b = new PlayerScene();
 				Scene newScene = new Scene(b);
 				stg.setScene(newScene);
 			}
