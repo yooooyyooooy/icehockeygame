@@ -1,11 +1,11 @@
 
-public abstract class Marble {
+public abstract class Oblect {
 	final double radius = 20; //to be edited
 	protected double x_coordinate;
 	protected double y_coordinate;
 	protected double speed;
 	
-	public Marble(double x, double y) {
+	public Oblect(double x, double y) {
 		this.setX_coordinate(x);
 		this.setY_coordinate(y);
 		this.setSpeed(0);

@@ -1,5 +1,5 @@
 
-public class Item extends Marble {
+public class Item extends Oblect {
 	protected String name;
 	
 	public Item(double x, double y, String name) {
