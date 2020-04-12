@@ -5,6 +5,7 @@ public class IllusionBall extends Ball implements Movable {
 	
 	public IllusionBall(double x, double y) {
 		super(x, y);
+		super.setSpeed(super.getSpeed());
 		// TODO Auto-generated constructor stub
 	}
 

@@ -19,7 +19,7 @@ public class NormalBall extends Ball implements Movable, Transitionable {
 	}
 
 	@Override
-	public void transtion() {
+	public void transition() {
 		// TODO Auto-generated method stub
 		
 	}

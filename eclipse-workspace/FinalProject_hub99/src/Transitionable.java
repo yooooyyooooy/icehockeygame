@@ -1,4 +1,4 @@
 
 public interface Transitionable {
-	public void transtion();
+	public void transition();
 }
