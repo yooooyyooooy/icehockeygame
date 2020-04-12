@@ -1,37 +1,38 @@
 
-public abstract class Ball {
+public class Board implements Movable {
+	
 	final double radius = 20; //to be edited
 	protected double x_coordinate;
 	protected double y_coordinate;
-	protected double speed;
 	
-	public Ball(double x, double y, double speed) {
+	public Board(double x, double y) {
 		this.setX_coordinate(x);
 		this.setY_coordinate(y);
-		this.setSpeed(speed);
 	}
-	
-	public double getSpeed() {
-		return speed;
-	}
-
-	public void setSpeed(double speed) {
-		this.speed = speed;
+	@Override
+	public void move(double x, double y) {
+		// TODO Auto-generated method stub
+		
 	}
 
+	@Override
+	public void bounce(double x, double y) {
+		// TODO Auto-generated method stub
+		
+	}
 	public double getX_coordinate() {
 		return x_coordinate;
 	}
-
 	public void setX_coordinate(double x_coordinate) {
 		this.x_coordinate = x_coordinate;
 	}
-
 	public double getY_coordinate() {
 		return y_coordinate;
 	}
-
 	public void setY_coordinate(double y_coordinate) {
 		this.y_coordinate = y_coordinate;
 	}
+	
+	
+	
 }
