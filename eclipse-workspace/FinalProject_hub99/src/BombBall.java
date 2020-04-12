@@ -1,5 +1,5 @@
 
-public class BombBall extends Ball implements Movable{
+public class BombBall extends Marble implements Movable{
 	
 	final int timer = 10;
 	

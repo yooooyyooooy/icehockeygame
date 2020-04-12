@@ -1,27 +1,28 @@
 
-public abstract class Item {
-	protected double x_coordinate;
-	protected double y_coordinate;
+public class Item extends Marble {
+	protected String name;
 	
-	public Item(double x, double y) {
-		this.setX_coordinate(x);
-		this.setY_coordinate(y);
+	public Item(double x, double y, String name) {
+		// TODO Auto-generated constructor stub
+		super(x,y);
+		switch(name) {
+			case "Bomb":
+				this.setName("Bomb");
+			case "Illusion":
+				this.setName("Illusion");
+		}
 	}
-	public double getX_coordinate() {
-		return x_coordinate;
+	
+	public String getName() {
+		return name;
 	}
-
-	public void setX_coordinate(double x_coordinate) {
-		this.x_coordinate = x_coordinate;
+	public void setName(String name) {
+		this.name = name;
 	}
-
-	public double getY_coordinate() {
-		return y_coordinate;
+	@Override
+	public void bounce() {
+		// TODO Auto-generated method stub
+		
 	}
-
-	public void setY_coordinate(double y_coordinate) {
-		this.y_coordinate = y_coordinate;
-	}
-
-	public abstract void activate();
+	
 }

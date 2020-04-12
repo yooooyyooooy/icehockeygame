@@ -1,5 +1,5 @@
 
-public class NormalBall extends Ball implements Movable, Transitionable {
+public class NormalBall extends Marble implements Movable, Transitionable {
 
 	public NormalBall(double x, double y) {
 		super(x, y);

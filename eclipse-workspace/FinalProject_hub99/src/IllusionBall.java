@@ -1,5 +1,5 @@
 
-public class IllusionBall extends Ball implements Movable {
+public class IllusionBall extends Marble implements Movable {
 	
 	final int count = 2;
 	
