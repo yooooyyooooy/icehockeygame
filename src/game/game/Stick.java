@@ -9,7 +9,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class Stick extends Rectangle implements Movable, Runnable {
+public class Stick extends Rectangle implements Movable{
 
 	
 	public Stick(Color c) {
@@ -48,13 +48,6 @@ public class Stick extends Rectangle implements Movable, Runnable {
 	
 	public void hit() {
 		
-	}
-
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		this.move();
 	}
 	
 }
