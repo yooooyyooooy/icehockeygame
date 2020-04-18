@@ -1,5 +1,5 @@
 package game.game;
 
 public interface Transitionable {
-	public void transition();
+	public Puck transition(Item item);
 }

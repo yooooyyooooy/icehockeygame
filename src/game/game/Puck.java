@@ -2,22 +2,20 @@ package game.game;
 
 import javafx.scene.image.ImageView;
 
-public abstract class Object {
+public abstract class Puck {
 	final double radius = 20; //to be edited
 	protected double x_coordinate;
 	protected double y_coordinate;
 	protected double speed;
 	protected ImageView iv;
 	
-	public Object(double x, double y) {
+	public Puck(double x, double y) {
 		this.setX_coordinate(x);
 		this.setY_coordinate(y);
 		this.setSpeed(0);
 	}
 	
 	public abstract void bounce();
-	
-	public abstract void setImage(ImageView iv);
 	
 	public ImageView getIv() {
 		return iv;

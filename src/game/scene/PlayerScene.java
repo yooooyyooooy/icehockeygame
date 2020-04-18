@@ -19,7 +19,7 @@ public class PlayerScene extends VBox{
 	private TextField p2Name;
 	private Label p1Label;
 	private Label p2Label;
-	private Button okButton;
+	private Button playButton;
 	private Button cancelButton;
 	
 
@@ -65,20 +65,20 @@ public class PlayerScene extends VBox{
 		HBox h2 = new HBox(10);
 		h2.setPadding(new Insets(10));
 		h2.setAlignment(Pos.BOTTOM_RIGHT);
-		okButton = new Button("PLAY GAME!");
+		playButton = new Button("PLAY GAME!");
 		cancelButton = new Button("Cancel");
-		h2.getChildren().addAll(cancelButton, okButton);
+		h2.getChildren().addAll(cancelButton, playButton);
 		
 		this.getChildren().addAll(selectTimeText, h1, grid, h2);
 		
 	}
 
-	public Button getOkButton() {
-		return okButton;
+	public Button getPlayButton() {
+		return playButton;
 	}
 
-	public void setOkButton(Button okButton) {
-		this.okButton = okButton;
+	public void setPlayButton(Button okButton) {
+		this.playButton = okButton;
 	}
 
 	public Button getCancelButton() {

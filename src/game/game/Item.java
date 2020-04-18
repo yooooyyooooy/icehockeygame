@@ -3,7 +3,7 @@ package game.game;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class Item extends Object {
+public class Item extends Puck {
 	protected String name;
 	protected String url;
 	
@@ -15,13 +15,13 @@ public class Item extends Object {
 			case "Bomb":
 				this.setName("Bomb");
 				this.setUrl("bomb.png");
-				this.setImage(iv);
+				
 				
 			case "Ghost":
 				this.setName("Ghost");
 				this.setUrl("ghost.png");
-				this.setImage(iv);
 		}
+		super.setIv((new ImageView(this.getUrl())));
 	}
 	
 	public String getName() {
@@ -43,12 +43,6 @@ public class Item extends Object {
 	public void bounce() {
 		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public void setImage(ImageView iv) {
-		// TODO Auto-generated method stub
-		iv = new ImageView(new Image(this.getUrl()));
 	}
 
 	

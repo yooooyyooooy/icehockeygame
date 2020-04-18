@@ -3,18 +3,19 @@ package game.game;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class BombBall extends Object implements Movable{
+public class BombBall extends Puck implements Movable{
 	
 	final int timer = 10;
 	
 	public BombBall(double x, double y) {
 		super(x, y);
+		super.setIv((new ImageView(new Image("bombball.png"))));
 		super.setSpeed(super.getSpeed());
 		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
-	public void move(double x, double y) {
+	public void move() {
 		// TODO Auto-generated method stub
 		
 	}
@@ -25,10 +26,4 @@ public class BombBall extends Object implements Movable{
 		
 	}
 
-	@Override
-	public void setImage(ImageView iv) {
-		// TODO Auto-generated method stub
-		iv = new ImageView(new Image("bombball.png"));
-	}
-	
 }

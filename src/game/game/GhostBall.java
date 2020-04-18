@@ -3,19 +3,20 @@ package game.game;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class GhostBall extends Object implements Movable {
+public class GhostBall extends Puck implements Movable {
 	
 	final int count = 2;
 	
 	public GhostBall(double x, double y) {
 		super(x, y);
+		super.setIv((new ImageView(new Image("ghostball.png"))));
 		super.setSpeed(super.getSpeed());
 		// TODO Auto-generated constructor stub
 	}
 
 	
 	@Override
-	public void move(double x, double y) {
+	public void move() {
 		// TODO Auto-generated method stub
 		
 	}
@@ -26,11 +27,5 @@ public class GhostBall extends Object implements Movable {
 		
 	}
 
-
-	@Override
-	public void setImage(ImageView iv) {
-		// TODO Auto-generated method stub
-		iv = new ImageView(new Image("ghostball.png"));
-	}
 	
 }

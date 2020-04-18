@@ -46,6 +46,25 @@ public class Main extends Application {
 			}
 		});
 		
+		tutorialscene.getStartBtn().setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				stg.setScene(Gscene);
+			}
+		}); 
+		
+		tutorialscene.getBackBtn().setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				stg.setScene(Wscene);
+			}
+		});
+	
+		
 		playerscene.getCancelButton().setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -55,7 +74,7 @@ public class Main extends Application {
 			}
 		});
 		
-		playerscene.getOkButton().setOnAction(new EventHandler<ActionEvent>() {
+		playerscene.getPlayButton().setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent arg0) {
