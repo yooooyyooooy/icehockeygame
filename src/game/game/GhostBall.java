@@ -1,5 +1,7 @@
 package game.game;
 
+import javafx.scene.image.ImageView;
+
 public class GhostBall extends Object implements Movable {
 	
 	final int count = 2;
@@ -23,4 +25,11 @@ public class GhostBall extends Object implements Movable {
 		
 	}
 
+
+	@Override
+	public void setImage(ImageView iv) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }
