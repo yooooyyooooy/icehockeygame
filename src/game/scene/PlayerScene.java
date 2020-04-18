@@ -22,6 +22,7 @@ public class PlayerScene extends VBox{
 	private Button okButton;
 	private Button cancelButton;
 	
+
 	public PlayerScene() {
 		this.setAlignment(Pos.CENTER);
 		this.setPrefWidth(500);
@@ -87,5 +88,23 @@ public class PlayerScene extends VBox{
 	public void setCancelButton(Button cancelButton) {
 		this.cancelButton = cancelButton;
 	}
+	
+	public TextField getP1Name() {
+		return p1Name;
+	}
+
+	public void setP1Name(TextField p1Name) {
+		this.p1Name = p1Name;
+	}
+
+	public TextField getP2Name() {
+		return p2Name;
+	}
+
+	public void setP2Name(TextField p2Name) {
+		this.p2Name = p2Name;
+	}
+	
+	
 	
 }

@@ -1,5 +1,6 @@
 package Main;
 
+import game.scene.GameScene;
 import game.scene.PlayerScene;
 import game.scene.WelcomeScene;
 import game.scene.WinningScene;
@@ -14,21 +15,45 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stg) throws Exception {
 		// TODO Auto-generated method stub
-		WelcomeScene a = new WelcomeScene();
-		a.getPlayButton().setOnAction(new EventHandler<ActionEvent>() {
+		WelcomeScene welcomescene = new WelcomeScene();
+		PlayerScene playerscene = new PlayerScene();
+		GameScene gamescene = new GameScene();
+		
+		Scene Wscene = new Scene(welcomescene);
+		Scene Pscene = new Scene(playerscene);
+		Scene Gscene = new Scene(gamescene);
+		
+		welcomescene.getPlayButton().setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
 			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				PlayerScene b = new PlayerScene();
-				Scene newScene = new Scene(b);
-				stg.setScene(newScene);
+				playerscene.getP1Name().setText("");
+				playerscene.getP2Name().setText("");
+				stg.setScene(Pscene);
 			}
 		});
 		
-		Scene scene = new Scene(a);
+		playerscene.getCancelButton().setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				stg.setScene(Wscene);
+			}
+		});
+		
+		playerscene.getOkButton().setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				stg.setScene(Gscene);
+			}
+		});
+		
 		stg.setTitle("Hockey Game");
-		stg.setScene(scene);
+		stg.setScene(Wscene);
 		stg.setResizable(false);
 		stg.show();
 	}

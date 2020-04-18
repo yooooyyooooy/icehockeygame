@@ -1,5 +1,6 @@
 package game.game;
 
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class GhostBall extends Object implements Movable {
@@ -29,7 +30,7 @@ public class GhostBall extends Object implements Movable {
 	@Override
 	public void setImage(ImageView iv) {
 		// TODO Auto-generated method stub
-		
+		iv = new ImageView(new Image("ghostball.png"));
 	}
 	
 }

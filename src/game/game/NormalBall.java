@@ -1,5 +1,6 @@
 package game.game;
 
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class NormalBall extends Object implements Movable, Transitionable {
@@ -30,7 +31,7 @@ public class NormalBall extends Object implements Movable, Transitionable {
 	@Override
 	public void setImage(ImageView iv) {
 		// TODO Auto-generated method stub
-		
+		iv = new ImageView(new Image("normalball.png"));
 	}
 
 }
