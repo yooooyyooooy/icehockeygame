@@ -1,5 +1,7 @@
 package Main;
 
+import game.game.NormalBall;
+import game.game.Stick;
 import game.scene.GameScene;
 import game.scene.PlayerScene;
 import game.scene.TutorialScene;
@@ -8,7 +10,9 @@ import game.scene.WinningScene;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -82,6 +86,25 @@ public class Main extends Application {
 			}
 		});
 		 
+		Group g = new Group(); //hold puck and stick
+		gamescene.getChildren().add(g);
+		
+		// Player1 Stick
+		Stick player1Stick  = new Stick(10,70,Color.RED);
+			player1Stick.setX(30-player1Stick.getWidth()/2);
+			player1Stick.setY(gamescene.getPrefHeight()/2-player1Stick.getHeight()/2);
+			player1Stick.move();
+			player1Stick.setFocusTraversable(true);
+		// Player2 Stick
+		Stick player2Stick  = new Stick(10,70, Color.BROWN);
+			player2Stick.setX(gamescene.getPrefWidth()-30-player2Stick.getWidth()/2);
+			player2Stick.setY(gamescene.getPrefHeight()/2-player2Stick.getHeight()/2);
+			player2Stick.move();
+			player2Stick.setFocusTraversable(true);
+//		NormalBall normalBall = new NormalBall(x, y)
+		
+		g.getChildren().addAll(player2Stick,player1Stick);
+		
 		stg.setTitle("Hockey Game");
 		stg.setScene(Wscene);
 		stg.setResizable(false);

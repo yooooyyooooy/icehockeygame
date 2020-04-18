@@ -1,55 +1,55 @@
 package game.game;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.event.EventHandler;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
-public class Stick implements Movable {
+public class Stick extends Rectangle{
 	
-	final double radius = 20; //to be edited
-	final ImageView iv;
-	protected double x_coordinate;
-	protected double y_coordinate;
-	
-	public Stick(double x, double y) {
-		this.setX_coordinate(x);
-		this.setY_coordinate(y);
-		iv = new ImageView(new Image("stick.png"));
+	public Stick(int width, int height, Color color){
+		super(width,height);
+		setFill(color);
 	}
+	public void move() {
+		  // TODO Auto-generated method stub
+		Stick me = this;
+		if(me.getFill().equals(Color.RED)) {
+			this.setOnKeyPressed(new EventHandler<KeyEvent>() {
+				@Override
+				public void handle(KeyEvent event) {
+					// TODO Auto-generated method stub
+					if(event.getCode().equals(KeyCode.W)) {
+						me.setY(me.getY()-4);
+					}else if(event.getCode().equals(KeyCode.S)) {
+					    me.setY(me.getY()+4);
+					}else if(event.getCode().equals(KeyCode.A)) {
+					    me.setX(me.getX()-4);
+					}else if(event.getCode().equals(KeyCode.D)) {
+					    me.setX(me.getX()+4);
+					    }
+					}
+			});
+		}
+		if(me.getFill().equals(Color.BROWN)) {
+			this.setOnKeyPressed(new EventHandler<KeyEvent>() {
+				@Override
+				public void handle(KeyEvent event) {
+					// TODO Auto-generated method stub
+					if(event.getCode().equals(KeyCode.UP)) {
+						me.setY(me.getY()-4);
+					}else if(event.getCode().equals(KeyCode.DOWN)) {
+						me.setY(me.getY()+4);
+					}else if(event.getCode().equals(KeyCode.LEFT)) {
+						me.setX(me.getX()-4);
+					}else if(event.getCode().equals(KeyCode.RIGHT)) {
+						me.setX(me.getX()+4);
+					}
+				}
+			});
+		}
 	
-	public double getRadius() {
-		return radius;
 	}
-	
-	public ImageView getIv() {
-		return iv;
-	}
-	
-	@Override
-	public void move(double x, double y) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	public void hit() {
-		
-	}
-	
-	public double getX_coordinate() {
-		return x_coordinate;
-	}
-	
-	public void setX_coordinate(double x_coordinate) {
-		this.x_coordinate = x_coordinate;
-	}
-	
-	public double getY_coordinate() {
-		return y_coordinate;
-	}
-	
-	public void setY_coordinate(double y_coordinate) {
-		this.y_coordinate = y_coordinate;
-	}
-	
-	
-	
 }
+	
