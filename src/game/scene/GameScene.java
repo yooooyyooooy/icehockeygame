@@ -15,7 +15,7 @@ import javafx.scene.layout.StackPane;
 import game.game.*;
 
 public class GameScene extends StackPane {
-	final Image iv = new Image("background2.jpg");
+	final Image iv = new Image("background2.png");
 	NormalBall ball;
 	Stick stick;
 	

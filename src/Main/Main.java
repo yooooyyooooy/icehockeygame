@@ -2,6 +2,7 @@ package Main;
 
 import game.scene.GameScene;
 import game.scene.PlayerScene;
+import game.scene.TutorialScene;
 import game.scene.WelcomeScene;
 import game.scene.WinningScene;
 import javafx.application.Application;
@@ -18,10 +19,12 @@ public class Main extends Application {
 		WelcomeScene welcomescene = new WelcomeScene();
 		PlayerScene playerscene = new PlayerScene();
 		GameScene gamescene = new GameScene();
+		TutorialScene tutorialscene = new TutorialScene();
 		
 		Scene Wscene = new Scene(welcomescene);
 		Scene Pscene = new Scene(playerscene);
 		Scene Gscene = new Scene(gamescene);
+		Scene TScene = new Scene(tutorialscene);
 		
 		welcomescene.getPlayButton().setOnAction(new EventHandler<ActionEvent>() {
 			
@@ -31,6 +34,15 @@ public class Main extends Application {
 				playerscene.getP1Name().setText("");
 				playerscene.getP2Name().setText("");
 				stg.setScene(Pscene);
+			}
+		});
+		
+		welcomescene.getTutorialButton().setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				stg.setScene(TScene);
 			}
 		});
 		

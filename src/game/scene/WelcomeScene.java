@@ -41,7 +41,7 @@ public class WelcomeScene extends VBox {
 		tutorialButton.setPrefWidth(150);
 	
 		
-		backgroundImg = new Image("background.jpg");
+		backgroundImg = new Image("background.png");
 		
 		this.setBackground(new Background(new BackgroundImage(backgroundImg, BackgroundRepeat.NO_REPEAT,
 				BackgroundRepeat.NO_REPEAT,
