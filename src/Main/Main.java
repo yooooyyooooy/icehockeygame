@@ -64,6 +64,24 @@ public class Main extends Application {
 			}
 		});
 		
+		tutorialscene.getBackBtn().setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				stg.setScene(Wscene);
+			}
+		});
+		
+		tutorialscene.getplayBtn().setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				stg.setScene(Gscene);
+			}
+		});
+		 
 		stg.setTitle("Hockey Game");
 		stg.setScene(Wscene);
 		stg.setResizable(false);
