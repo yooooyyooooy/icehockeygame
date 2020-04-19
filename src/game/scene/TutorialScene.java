@@ -90,16 +90,14 @@ public class TutorialScene extends VBox {
 				+ "\n"+"club and will return to Normal ball only if it hits the wall.");
 		this.ghostBallDefLabel.setFont(new Font(14));
 		
-<<<<<<< HEAD
 		this.backBtn = new Button("Back");
-		this.startBtn = new Button("PLAY!!");
-||||||| merged common ancestors
-		this.backBtn = new Button("BACK TO MAIN");
-		this.startBtn = new Button("START GAME");
-=======
+		this.playBtn = new Button("PLAY!!");
 		this.backBtn = new Button("BACK TO MAIN");
 		this.playBtn = new Button("START GAME");
->>>>>>> ed16acc96da2365ad79fff741a45d5bd1078e8df
+
+		this.backBtn = new Button("BACK TO MAIN");
+		this.playBtn = new Button("START GAME");
+
 		 
 		HBox h1 = new HBox();
 		HBox h2 = new HBox();
