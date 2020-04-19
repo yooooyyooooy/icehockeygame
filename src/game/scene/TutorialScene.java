@@ -34,7 +34,7 @@ public class TutorialScene extends VBox {
 	private Label bombBallDefLabel;
 	private Label ghostBallDefLabel;
 	private Button backBtn;
-	private Button startBtn;
+	private Button playBtn;
 	
 	public TutorialScene() {
 		this.setAlignment(Pos.CENTER);
@@ -90,8 +90,16 @@ public class TutorialScene extends VBox {
 				+ "\n"+"club and will return to Normal ball only if it hits the wall.");
 		this.ghostBallDefLabel.setFont(new Font(14));
 		
+<<<<<<< HEAD
 		this.backBtn = new Button("Back");
 		this.startBtn = new Button("PLAY!!");
+||||||| merged common ancestors
+		this.backBtn = new Button("BACK TO MAIN");
+		this.startBtn = new Button("START GAME");
+=======
+		this.backBtn = new Button("BACK TO MAIN");
+		this.playBtn = new Button("START GAME");
+>>>>>>> ed16acc96da2365ad79fff741a45d5bd1078e8df
 		 
 		HBox h1 = new HBox();
 		HBox h2 = new HBox();
@@ -103,7 +111,7 @@ public class TutorialScene extends VBox {
 		h1.getChildren().addAll(this.normalBall, this.normalBallDefLabel);
 		h2.getChildren().addAll(this.bomb, this.bombBallDefLabel, this.bombBall);
 		h3.getChildren().addAll(this.ghost, this.ghostBallDefLabel, this.ghostBall);
-		h4.getChildren().addAll(this.backBtn, this.startBtn);
+		h4.getChildren().addAll(this.backBtn, this.playBtn);
 		
 		this.getChildren().addAll(this.tutorial, this.welcomeTutorial, h1, h2, h3, h4);
 		
@@ -117,12 +125,12 @@ public class TutorialScene extends VBox {
 		this.backBtn = backBtn;
 	}
 
-	public Button getStartBtn() {
-		return startBtn;
+	public Button getplayBtn() {
+		return playBtn;
 	}
 
-	public void setStartBtn(Button startBtn) {
-		this.startBtn = startBtn;
+	public void setplayBtn(Button startBtn) {
+		this.playBtn = startBtn;
 	}
 	
 	
