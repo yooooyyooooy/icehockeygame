@@ -1,6 +1,7 @@
 package game.scene;
 
 import javafx.scene.Group;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 
 import javafx.scene.layout.Background;
@@ -17,9 +18,11 @@ public class GameScene extends Pane {
 	NormalBall ball;
 	Stick stick1;
 	Stick stick2;
+	Canvas canvas;
 	
 	public GameScene() {
 		Group group = new Group();
+		canvas = new Canvas(iv.getWidth(), iv.getHeight());
 		
 		this.setPrefWidth(iv.getWidth());
 		this.setPrefHeight(iv.getHeight());
