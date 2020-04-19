@@ -38,8 +38,8 @@ public class GameScene extends Pane {
 		stick2.setX(this.getPrefWidth()-30-stick2.getWidth()/2);
 		stick2.setY(this.getPrefHeight()/2-stick2.getHeight()/2);
 		
-		stick1.move();
 		stick2.move();
+		
 		
 		
 		

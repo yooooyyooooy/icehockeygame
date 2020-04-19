@@ -37,9 +37,13 @@ public class Stick extends Rectangle implements Movable{
 				
 				if(me.getFill().equals(Color.BLUE)) {
 					if(event.getCode().equals(KeyCode.UP)) {
-						me.setY(me.getY()-50);
+						me.setY(me.getY()-30);
 					}else if(event.getCode().equals(KeyCode.DOWN)) {
-						me.setY(me.getY()+50);
+						me.setY(me.getY()+30);
+					}else if(event.getCode().equals(KeyCode.LEFT)) {
+						me.setX(me.getX()-30);
+					}else if(event.getCode().equals(KeyCode.RIGHT)) {
+						me.setX(me.getX()+30);
 					}
 				}
 			}
