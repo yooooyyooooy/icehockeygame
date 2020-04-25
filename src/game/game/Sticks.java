@@ -11,31 +11,29 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
-public class Stick implements Movable{
+public class Sticks implements Movable{
 	
 	private double x_pos1;
 	private double y_pos1;
 	private double x_pos2;
 	private double y_pos2;
 	
-	public Stick(GraphicsContext gc, String player) {
+	public Sticks(GraphicsContext gc) {
 		this.setX_pos1(30);
 		this.setY_pos1(gc.getCanvas().getHeight()/2-35);
 		this.setX_pos2(gc.getCanvas().getWidth()-30);
 		this.setY_pos2(gc.getCanvas().getHeight()/2-35);
-		if(player.equals("Player1")) {
-			gc.setFill(Color.RED);
-			gc.fillRoundRect(this.getX_pos1(), this.getY_pos1(), 10, 70, 20, 20);
-		}else {
-			gc.setFill(Color.BLUE);
-			gc.fillRoundRect(this.getX_pos2(), this.getY_pos2(), 10, 70, 20, 20);
-		}
+		gc.setFill(Color.RED);
+		gc.fillRoundRect(this.getX_pos1(), this.getY_pos1(), 10, 70, 20, 20);
+		gc.setFill(Color.BLUE);
+		gc.fillRoundRect(this.getX_pos2(), this.getY_pos2(), 10, 70, 20, 20);
 	}
 	
 	
 	@Override
 	public void move(GraphicsContext gc) {
 		// TODO Auto-generated method stub
+		//Red Stick
 		if(InputUtility.getKeyPressed(KeyCode.W) && this.getY_pos1() > 0 ) {
 			gc.clearRect(this.getX_pos1(), this.getY_pos1(), 10, 70);
 			this.setY_pos1(this.getY_pos1()-3);
@@ -61,6 +59,7 @@ public class Stick implements Movable{
 			gc.fillRoundRect(this.getX_pos1(), this.getY_pos1(), 10, 70, 20, 20);
 		}
 		
+		//Blue Stick
 		if(InputUtility.getKeyPressed(KeyCode.UP) && this.getY_pos2() > 0 ) {
 			gc.clearRect(this.getX_pos2(), this.getY_pos2(), 10, 70);
 			this.setY_pos2(this.getY_pos2()-3);

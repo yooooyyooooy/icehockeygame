@@ -13,15 +13,13 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import game.game.*;
 
 public class GameScene extends StackPane {
 	private final Image iv = new Image("background2.png");
 	private NormalBall ball;
-	private Stick stick1;
-	private Stick stick2;
+	private Sticks stick;
 	private Canvas canvas;
 	
 	public GameScene() {
@@ -39,8 +37,7 @@ public class GameScene extends StackPane {
 				BackgroundPosition.DEFAULT,
 				BackgroundSize.DEFAULT)));
 				
-		stick1 = new Stick(gc, "Player1");
-		stick2 = new Stick(gc, "Player2");
+		stick = new Sticks(gc);
 		
 		addListener();
 		
@@ -49,7 +46,7 @@ public class GameScene extends StackPane {
 			@Override
 			public void handle(long arg0) {
 				// TODO Auto-generated method stub
-				stick1.move(gc);
+				stick.move(gc);
 			}
 		};
 		

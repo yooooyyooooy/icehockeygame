@@ -1,7 +1,5 @@
 package Main;
 
-import game.game.NormalBall;
-import game.game.Stick;
 import game.scene.GameScene;
 import game.scene.PlayerScene;
 import game.scene.TutorialScene;
@@ -10,9 +8,7 @@ import game.scene.WinningScene;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -95,8 +91,6 @@ public class Main extends Application {
 				stg.setScene(Wscene);
 			}
 		});
-		
-		
 		
 		stg.setTitle("Hockey Game");
 		stg.setScene(Wscene);
