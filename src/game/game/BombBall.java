@@ -10,7 +10,7 @@ public class BombBall extends Puck implements Movable{
 	
 	public BombBall(double x, double y) {
 		super(x, y);
-		super.setIv((new ImageView(new Image("bombball.png"))));
+		super.setImg(new Image("bombball.png"));
 		super.setSpeed(super.getSpeed());
 		// TODO Auto-generated constructor stub
 	}

@@ -6,17 +6,18 @@ import javafx.scene.image.ImageView;
 
 public class NormalBall extends Puck implements Movable, Transitionable {
 
-	public NormalBall(double x, double y) {
-		super(x, y);
-		super.setIv((new ImageView(new Image("normalball.png"))));
-		super.setSpeed(super.getSpeed());
+	public NormalBall(GraphicsContext gc) {
+		super(gc.getCanvas().getWidth()/2, gc.getCanvas().getHeight()/2);
+		this.setImg(new Image("normalball.png",30 ,30, false, false));
+		this.setSpeed(5);
+		gc.drawImage(this.getImg(), this.getX_coordinate()-this.getImg().getWidth()/2, this.getY_coordinate()-this.getImg().getHeight()/2);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void move(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

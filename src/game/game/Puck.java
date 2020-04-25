@@ -1,28 +1,28 @@
 package game.game;
 
-import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 
 public abstract class Puck {
 	final double radius = 20; //to be edited
 	protected double x_coordinate;
 	protected double y_coordinate;
 	protected double speed;
-	protected ImageView iv;
+	protected Image img;
 	
 	public Puck(double x, double y) {
 		this.setX_coordinate(x);
 		this.setY_coordinate(y);
-		this.setSpeed(0);
 	}
 	
 	public abstract void bounce();
 	
-	public ImageView getIv() {
-		return iv;
+	
+	public Image getImg() {
+		return img;
 	}
 
-	public void setIv(ImageView iv) {
-		this.iv = iv;
+	public void setImg(Image img) {
+		this.img = img;
 	}
 
 	public double getRadius() {

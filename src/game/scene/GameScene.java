@@ -5,9 +5,7 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -19,7 +17,7 @@ import game.game.*;
 public class GameScene extends StackPane {
 	private final Image iv = new Image("background2.png");
 	private NormalBall ball;
-	private Sticks stick;
+	private Sticks sticks;
 	private Canvas canvas;
 	
 	public GameScene() {
@@ -31,13 +29,13 @@ public class GameScene extends StackPane {
 		this.setPrefWidth(iv.getWidth());
 		this.setPrefHeight(iv.getHeight());
 		
-		
 		this.setBackground(new Background(new BackgroundImage(this.iv, BackgroundRepeat.NO_REPEAT,
 				BackgroundRepeat.NO_REPEAT,
 				BackgroundPosition.DEFAULT,
 				BackgroundSize.DEFAULT)));
 				
-		stick = new Sticks(gc);
+		sticks = new Sticks(gc);
+		ball = new NormalBall(gc);
 		
 		addListener();
 		
@@ -46,15 +44,14 @@ public class GameScene extends StackPane {
 			@Override
 			public void handle(long arg0) {
 				// TODO Auto-generated method stub
-				stick.move(gc);
+				sticks.move(gc);
 			}
 		};
 		
 		animation.start();
 		
 		this.getChildren().add(canvas);
-
-			
+	
 	}
 
 	public void addListener() {
@@ -66,15 +63,6 @@ public class GameScene extends StackPane {
 		canvas.setOnKeyReleased((KeyEvent event) -> {
 			InputUtility.setKeyPressed(event.getCode(), false);
 		});
-		
-		canvas.setOnMousePressed((MouseEvent event) -> {
-			InputUtility.setKeyPressed(KeyCode.W, true);
-		});
-		
-		canvas.setOnMouseReleased((MouseEvent event) -> {
-			InputUtility.setKeyPressed(KeyCode.W, false);
-		});
-		
 	}
 
 }

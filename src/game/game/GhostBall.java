@@ -10,7 +10,7 @@ public class GhostBall extends Puck implements Movable {
 	
 	public GhostBall(double x, double y) {
 		super(x, y);
-		super.setIv((new ImageView(new Image("ghostball.png"))));
+		super.setImg(new Image("ghostball.png"));
 		super.setSpeed(super.getSpeed());
 		// TODO Auto-generated constructor stub
 	}

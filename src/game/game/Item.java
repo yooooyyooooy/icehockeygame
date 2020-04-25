@@ -10,6 +10,7 @@ public class Item extends Puck {
 	public Item(double x, double y, String name) {
 		// TODO Auto-generated constructor stub
 		super(x,y);
+		this.setSpeed(0);
 			
 		switch(name) {
 			case "Bomb":
@@ -21,7 +22,7 @@ public class Item extends Puck {
 				this.setName("Ghost");
 				this.setUrl("ghost.png");
 		}
-		super.setIv((new ImageView(this.getUrl())));
+		super.setImg((new Image(this.getUrl())));
 	}
 	
 	public String getName() {
