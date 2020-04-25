@@ -1,5 +1,6 @@
 package game.game;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -15,7 +16,7 @@ public class BombBall extends Puck implements Movable{
 	}
 	
 	@Override
-	public void move() {
+	public void move(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		
 	}

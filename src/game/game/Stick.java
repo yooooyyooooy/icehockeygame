@@ -36,17 +36,60 @@ public class Stick implements Movable{
 	@Override
 	public void move(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		if(InputUtility.getKeyPressed(KeyCode.W)) {
-			this.setY_pos1(this.getY_pos1()-50);
+		if(InputUtility.getKeyPressed(KeyCode.W) && this.getY_pos1() > 0 ) {
+			gc.clearRect(this.getX_pos1(), this.getY_pos1(), 10, 70);
+			this.setY_pos1(this.getY_pos1()-3);
 			gc.setFill(Color.RED);
 			gc.fillRoundRect(this.getX_pos1(), this.getY_pos1(), 10, 70, 20, 20);
+			
+		}if(InputUtility.getKeyPressed(KeyCode.S) && this.getY_pos1() < gc.getCanvas().getHeight()-70 ) {
+			gc.clearRect(this.getX_pos1(), this.getY_pos1(), 10, 70);
+			this.setY_pos1(this.getY_pos1()+3);
+			gc.setFill(Color.RED);
+			gc.fillRoundRect(this.getX_pos1(), this.getY_pos1(), 10, 70, 20, 20);
+			
+		}if(InputUtility.getKeyPressed(KeyCode.A) && this.getX_pos1() > 0 ) {
+			gc.clearRect(this.getX_pos1(), this.getY_pos1(), 10, 70);
+			this.setX_pos1(this.getX_pos1()-3);
+			gc.setFill(Color.RED);
+			gc.fillRoundRect(this.getX_pos1(), this.getY_pos1(), 10, 70, 20, 20);
+			
+		}if(InputUtility.getKeyPressed(KeyCode.D) && this.getX_pos1() < gc.getCanvas().getWidth()/2-10 ) {
+			gc.clearRect(this.getX_pos1(), this.getY_pos1(), 10, 70);
+			this.setX_pos1(this.getX_pos1()+3);
+			gc.setFill(Color.RED);
+			gc.fillRoundRect(this.getX_pos1(), this.getY_pos1(), 10, 70, 20, 20);
+		}
+		
+		if(InputUtility.getKeyPressed(KeyCode.UP) && this.getY_pos2() > 0 ) {
+			gc.clearRect(this.getX_pos2(), this.getY_pos2(), 10, 70);
+			this.setY_pos2(this.getY_pos2()-3);
+			gc.setFill(Color.BLUE);
+			gc.fillRoundRect(this.getX_pos2(), this.getY_pos2(), 10, 70, 20, 20);
+			
+		}if(InputUtility.getKeyPressed(KeyCode.DOWN) && this.getY_pos2() < gc.getCanvas().getHeight()-70 ) {
+			gc.clearRect(this.getX_pos2(), this.getY_pos2(), 10, 70);
+			this.setY_pos2(this.getY_pos2()+3);
+			gc.setFill(Color.BLUE);
+			gc.fillRoundRect(this.getX_pos2(), this.getY_pos2(), 10, 70, 20, 20);
+			
+		}if(InputUtility.getKeyPressed(KeyCode.LEFT) && this.getX_pos2() > gc.getCanvas().getWidth()/2 ) {
+			gc.clearRect(this.getX_pos2(), this.getY_pos2(), 10, 70);
+			this.setX_pos2(this.getX_pos2()-3);
+			gc.setFill(Color.BLUE);
+			gc.fillRoundRect(this.getX_pos2(), this.getY_pos2(), 10, 70, 20, 20);
+			
+		}if(InputUtility.getKeyPressed(KeyCode.RIGHT) && this.getX_pos2() < gc.getCanvas().getWidth()-10  ) {
+			gc.clearRect(this.getX_pos2(), this.getY_pos2(), 10, 70);
+			this.setX_pos2(this.getX_pos2()+3);
+			gc.setFill(Color.BLUE);
+			gc.fillRoundRect(this.getX_pos2(), this.getY_pos2(), 10, 70, 20, 20);
 		}
 	}
 	
 	public void hit() {
 		
 	}
-
 
 	public double getX_pos1() {
 		return x_pos1;

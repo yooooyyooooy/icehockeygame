@@ -1,5 +1,6 @@
 package game.game;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -13,7 +14,7 @@ public class NormalBall extends Puck implements Movable, Transitionable {
 	}
 
 	@Override
-	public void move() {
+	public void move(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		
 	}
