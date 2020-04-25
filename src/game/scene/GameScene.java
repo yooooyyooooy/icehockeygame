@@ -1,16 +1,18 @@
 package game.scene;
 
-import javafx.scene.Group;
+import game.input.*;
+import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import game.game.*;
 
 public class GameScene extends Pane {
@@ -21,8 +23,9 @@ public class GameScene extends Pane {
 	Canvas canvas;
 	
 	public GameScene() {
-		Group group = new Group();
 		canvas = new Canvas(iv.getWidth(), iv.getHeight());
+		canvas.setVisible(true);
+		GraphicsContext gc = canvas.getGraphicsContext2D();
 		
 		this.setPrefWidth(iv.getWidth());
 		this.setPrefHeight(iv.getHeight());
@@ -33,23 +36,26 @@ public class GameScene extends Pane {
 				BackgroundPosition.DEFAULT,
 				BackgroundSize.DEFAULT)));
 				
-		stick1 = new Stick(Color.RED);
-		stick1.setX(30-stick1.getWidth()/2);
-		stick1.setY(this.getPrefHeight()/2-stick1.getHeight()/2);
+		stick1 = new Stick(gc, "Player1");
+		stick2 = new Stick(gc, "Player2");
 		
-		stick2 = new Stick(Color.BLUE);
-		stick2.setX(this.getPrefWidth()-30-stick2.getWidth()/2);
-		stick2.setY(this.getPrefHeight()/2-stick2.getHeight()/2);
+		addListener();
 		
-		stick2.move();
+		AnimationTimer animation = new AnimationTimer() {
+			
+			@Override
+			public void handle(long arg0) {
+				// TODO Auto-generated method stub
+				stick1.move(gc);
+			}
+		};
+		
+		animation.start();
 		
 		
-		
-		
-		group.getChildren().addAll(stick1, stick2);
-		
-		this.getChildren().add(group);
-				
+		this.getChildren().add(canvas);
+
+			
 	}
 
 	public Stick getStick1() {
@@ -68,5 +74,15 @@ public class GameScene extends Pane {
 		this.stick2 = stick2;
 	}
 	
-	
+	public void addListener() {
+		
+		canvas.setOnKeyPressed((KeyEvent event) -> {
+			InputUtility.setKeyPressed(event.getCode(), true);
+		});
+
+		canvas.setOnKeyReleased((KeyEvent event) -> {
+			InputUtility.setKeyPressed(event.getCode(), false);
+		});
+	}
+
 }

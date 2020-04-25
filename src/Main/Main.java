@@ -22,12 +22,10 @@ public class Main extends Application {
 		// TODO Auto-generated method stub
 		WelcomeScene welcomescene = new WelcomeScene();
 		PlayerScene playerscene = new PlayerScene();
-		GameScene gamescene = new GameScene();
 		TutorialScene tutorialscene = new TutorialScene();
 		
 		Scene Wscene = new Scene(welcomescene);
 		Scene Pscene = new Scene(playerscene);
-		Scene Gscene = new Scene(gamescene);
 		Scene TScene = new Scene(tutorialscene);
 		
 		welcomescene.getPlayButton().setOnAction(new EventHandler<ActionEvent>() {
@@ -55,7 +53,8 @@ public class Main extends Application {
 			@Override
 			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				stg.setScene(Gscene);
+				GameScene gamescene = new GameScene();
+				stg.setScene(new Scene(gamescene));
 			}
 		}); 
 		
@@ -83,7 +82,8 @@ public class Main extends Application {
 			@Override
 			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				stg.setScene(Gscene);
+				GameScene gamescene = new GameScene();
+				stg.setScene(new Scene(gamescene));
 			}
 		});
 		
@@ -96,19 +96,13 @@ public class Main extends Application {
 			}
 		});
 		
-		tutorialscene.getplayBtn().setOnAction(new EventHandler<ActionEvent>() {
-			
-			@Override
-			public void handle(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				stg.setScene(Gscene);
-			}
-		});
-		 
+		
+		
 		stg.setTitle("Hockey Game");
 		stg.setScene(Wscene);
 		stg.setResizable(false);
 		stg.show();
+		
 	}
 		public static void main(String[] args) {
 		// TODO Auto-generated method stub

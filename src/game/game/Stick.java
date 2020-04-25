@@ -1,57 +1,90 @@
 package game.game;
 
-
+import game.input.*;
 import javafx.event.EventHandler;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
-public class Stick extends Rectangle implements Movable{
-
+public class Stick implements Movable{
 	
-	public Stick(Color c) {
-		super(10, 70);
-		super.setFill(c);
+	private double x_pos1;
+	private double y_pos1;
+	private double x_pos2;
+	private double y_pos2;
+	
+	public Stick(GraphicsContext gc, String player) {
+		this.setX_pos1(30);
+		this.setY_pos1(gc.getCanvas().getHeight()/2-35);
+		this.setX_pos2(gc.getCanvas().getWidth()-30);
+		this.setY_pos2(gc.getCanvas().getHeight()/2-35);
+		if(player.equals("Player1")) {
+			gc.setFill(Color.RED);
+			gc.fillRoundRect(this.getX_pos1(), this.getY_pos1(), 10, 70, 20, 20);
+		}else {
+			gc.setFill(Color.BLUE);
+			gc.fillRoundRect(this.getX_pos2(), this.getY_pos2(), 10, 70, 20, 20);
+		}
 	}
 	
 	
 	@Override
-	public void move() {
+	public void move(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		Stick me = this;
-		me.setFocusTraversable(true);
-		this.setOnKeyPressed(new EventHandler<KeyEvent>() {
-			@Override
-			public void handle(KeyEvent event) {
-				// TODO Auto-generated method stub
-				if(me.getFill().equals(Color.RED)) {
-					if(event.getCode().equals(KeyCode.W)) {
-						me.setY(me.getY()-50);
-					}else if(event.getCode().equals(KeyCode.S)) {
-						me.setY(me.getY()+50);
-					}
-				}
-				
-				if(me.getFill().equals(Color.BLUE)) {
-					if(event.getCode().equals(KeyCode.UP)) {
-						me.setY(me.getY()-30);
-					}else if(event.getCode().equals(KeyCode.DOWN)) {
-						me.setY(me.getY()+30);
-					}else if(event.getCode().equals(KeyCode.LEFT)) {
-						me.setX(me.getX()-30);
-					}else if(event.getCode().equals(KeyCode.RIGHT)) {
-						me.setX(me.getX()+30);
-					}
-				}
-			}
-		});
+		if(InputUtility.getKeyPressed(KeyCode.W)) {
+			this.setY_pos1(this.getY_pos1()-50);
+			gc.setFill(Color.RED);
+			gc.fillRoundRect(this.getX_pos1(), this.getY_pos1(), 10, 70, 20, 20);
+		}
 	}
 	
 	public void hit() {
 		
+	}
+
+
+	public double getX_pos1() {
+		return x_pos1;
+	}
+
+
+	public void setX_pos1(double x_pos1) {
+		this.x_pos1 = x_pos1;
+	}
+
+
+	public double getY_pos1() {
+		return y_pos1;
+	}
+
+
+	public void setY_pos1(double y_pos1) {
+		this.y_pos1 = y_pos1;
+	}
+
+
+	public double getX_pos2() {
+		return x_pos2;
+	}
+
+
+	public void setX_pos2(double x_pos2) {
+		this.x_pos2 = x_pos2;
+	}
+
+
+	public double getY_pos2() {
+		return y_pos2;
+	}
+
+
+	public void setY_pos2(double y_pos2) {
+		this.y_pos2 = y_pos2;
 	}
 	
 }
