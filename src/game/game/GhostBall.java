@@ -4,7 +4,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class GhostBall extends Puck implements Movable {
+public class GhostBall extends Entity implements Movable {
 	
 	final int count = 2;
 	

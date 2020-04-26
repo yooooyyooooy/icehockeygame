@@ -4,7 +4,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class BombBall extends Puck implements Movable{
+public class BombBall extends Entity implements Movable{
 	
 	final int timer = 10;
 	

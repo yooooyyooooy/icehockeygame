@@ -45,6 +45,7 @@ public class GameScene extends StackPane {
 			public void handle(long arg0) {
 				// TODO Auto-generated method stub
 				sticks.move(gc);
+				ball.move(gc);
 			}
 		};
 		
@@ -57,12 +58,19 @@ public class GameScene extends StackPane {
 	public void addListener() {
 		
 		canvas.setOnKeyPressed((KeyEvent event) -> {
-			InputUtility.setKeyPressed(event.getCode(), true);
-		});
+				InputUtility.setKeyPressed(event.getCode(), true);
+				if(sticks.hit(ball)) {
+					InputUtility.sethitKeyPressed(event.getCode(), true);
+				}
+			});
 
 		canvas.setOnKeyReleased((KeyEvent event) -> {
-			InputUtility.setKeyPressed(event.getCode(), false);
-		});
+				InputUtility.setKeyPressed(event.getCode(), false);
+				if(sticks.hit(ball)) {
+					InputUtility.sethitKeyPressed(event.getCode(), false);
+				}
+			});
+		
 	}
 
 }
