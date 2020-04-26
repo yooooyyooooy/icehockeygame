@@ -81,17 +81,18 @@ public class Sticks implements Movable{
 	}
 	
 	public boolean hit(Entity ball) {
-		if(Math.abs(ball.getX_coordinate() - this.getX_pos1()+10) <= 7 || ball.getX_coordinate()+ball.getImg().getWidth() == this.getX_pos1() ||
-				ball.getY_coordinate()+ball.getImg().getHeight() == this.getY_pos1() || ball.getY_coordinate() == this.getY_pos1()+70) {
-			
+		
+		if((Math.abs(ball.getX_coordinate() - this.getX_pos1()+10) <= 7 || ball.getX_coordinate()+ball.getImg().getWidth() == this.getX_pos1() ||
+				ball.getY_coordinate()+ball.getImg().getHeight() == this.getY_pos1() || ball.getY_coordinate() == this.getY_pos1()+70) || (Math.abs(ball.getX_coordinate() - this.getX_pos2()+10) <= 7 || ball.getX_coordinate()+ball.getImg().getWidth() == this.getX_pos2() ||
+				ball.getY_coordinate()+ball.getImg().getHeight() == this.getY_pos2() || ball.getY_coordinate() == this.getY_pos2()+70)) {
 			ball.setMoving(true);
 			return true;
 			
 		}else {
-			
 			return false;
 			
 		}
+		
 	}
 
 	public double getX_pos1() {

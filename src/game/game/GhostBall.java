@@ -11,7 +11,6 @@ public class GhostBall extends Entity implements Movable {
 	public GhostBall(double x, double y) {
 		super(x, y);
 		super.setImg(new Image("ghostball.png"));
-		super.setSpeed(super.getSpeed());
 		// TODO Auto-generated constructor stub
 	}
 
@@ -23,7 +22,7 @@ public class GhostBall extends Entity implements Movable {
 	}
 
 	@Override
-	public void bounce() {
+	public void bounce(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		
 	}

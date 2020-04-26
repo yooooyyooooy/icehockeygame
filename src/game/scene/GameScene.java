@@ -46,6 +46,7 @@ public class GameScene extends StackPane {
 				// TODO Auto-generated method stub
 				sticks.move(gc);
 				ball.move(gc);
+				System.out.println(ball.getY_coordinate()+"   "+gc.getCanvas().getHeight()+"    "+ball.getX_coordinate()+"   "+gc.getCanvas().getWidth());
 			}
 		};
 		

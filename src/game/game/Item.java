@@ -1,5 +1,6 @@
 package game.game;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -10,7 +11,6 @@ public class Item extends Entity {
 	public Item(double x, double y, String name) {
 		// TODO Auto-generated constructor stub
 		super(x,y);
-		this.setSpeed(0);
 			
 		switch(name) {
 			case "Bomb":
@@ -41,7 +41,7 @@ public class Item extends Entity {
 	}
 
 	@Override
-	public void bounce() {
+	public void bounce(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		
 	}

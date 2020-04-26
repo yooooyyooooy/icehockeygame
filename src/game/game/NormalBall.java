@@ -1,5 +1,6 @@
 package game.game;
 
+import java.lang.Math;
 import game.input.InputUtility;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -18,41 +19,44 @@ public class NormalBall extends Entity implements Movable, Transitionable {
 	@Override
 	public void move(GraphicsContext gc) {
 		// TODO Auto-generated method stub
+		this.bounce(gc);
+		
 		if(isMoving()) {
-			if(InputUtility.getHitKeyPressed(KeyCode.W)) {
-				this.setYspeed(-2);
+			
+			if(InputUtility.getHitKeyPressed(KeyCode.W) || InputUtility.getHitKeyPressed(KeyCode.UP)) {
+				this.setYspeed(-4);
 			}
 			
-			if(InputUtility.getHitKeyPressed(KeyCode.S)) {
-				this.setYspeed(2);
+			if(InputUtility.getHitKeyPressed(KeyCode.S) || InputUtility.getHitKeyPressed(KeyCode.DOWN)) {
+				this.setYspeed(4);
 			}
 			
-			if(InputUtility.getHitKeyPressed(KeyCode.A)) {
-				this.setXspeed(-2.5);
+			if(InputUtility.getHitKeyPressed(KeyCode.A) || InputUtility.getHitKeyPressed(KeyCode.LEFT)) {
+				this.setXspeed(-4);
 			}
 			
-			if(InputUtility.getHitKeyPressed(KeyCode.D)) {
-				this.setXspeed(2.5);
+			if(InputUtility.getHitKeyPressed(KeyCode.D) || InputUtility.getHitKeyPressed(KeyCode.RIGHT)) {
+				this.setXspeed(4);
 			}
-			
+	
 			gc.clearRect(this.getX_coordinate(), this.getY_coordinate(), this.getImg().getWidth(), this.getImg().getHeight());
-			this.setY_coordinate(this.getY_coordinate()+this.getYspeed());
-			this.setX_coordinate(this.getX_coordinate()+this.getXspeed());
+			this.setY_coordinate((int)(this.getY_coordinate()+this.getYspeed()));
+			this.setX_coordinate((int)(this.getX_coordinate()+this.getXspeed()));
 			gc.drawImage(this.getImg(), this.getX_coordinate(), this.getY_coordinate());
-			
-			this.bounce(gc);
-			
 		}
+			
 	}
 
 	@Override
 	public void bounce(GraphicsContext gc) {
-		// TODO Auto-generated method stub		
-		if(this.getY_coordinate() == gc.getCanvas().getHeight() - 25 || this.getY_coordinate() == 25) {
+		// TODO Auto-generated method stub
+		
+		if(Math.abs(this.getY_coordinate() - gc.getCanvas().getHeight() + 30) <= 2  || this.getY_coordinate() <= 10) {
 				this.setYspeed(-(this.getYspeed()));
+				
 		  }
 		
-		if (this.getX_coordinate() == gc.getCanvas().getWidth() - 75 || this.getX_coordinate() == 75 ) {
+		if (Math.abs(this.getX_coordinate() - gc.getCanvas().getWidth() + 89) <= 2 || this.getX_coordinate() <= 60 ) {
 				this.setXspeed(-(this.getXspeed()));
 		  }
 	}
