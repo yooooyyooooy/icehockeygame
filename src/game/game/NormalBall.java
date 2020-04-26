@@ -25,6 +25,7 @@ public class NormalBall extends Entity implements Movable, Transitionable {
 			
 			if(InputUtility.getHitKeyPressed(KeyCode.W) || InputUtility.getHitKeyPressed(KeyCode.UP)) {
 				this.setYspeed(-4);
+				System.out.println("g");
 			}
 			
 			if(InputUtility.getHitKeyPressed(KeyCode.S) || InputUtility.getHitKeyPressed(KeyCode.DOWN)) {
@@ -51,14 +52,15 @@ public class NormalBall extends Entity implements Movable, Transitionable {
 	public void bounce(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		
-		if(Math.abs(this.getY_coordinate() - gc.getCanvas().getHeight() + 30) <= 2  || this.getY_coordinate() <= 10) {
+		if(Math.abs(this.getY_coordinate() - gc.getCanvas().getHeight() + 30) <= 2  || this.getY_coordinate() == 11) {
+				System.out.println("pm");
 				this.setYspeed(-(this.getYspeed()));
-				
 		  }
 		
-		if (Math.abs(this.getX_coordinate() - gc.getCanvas().getWidth() + 89) <= 2 || this.getX_coordinate() <= 60 ) {
+		if (Math.abs(this.getX_coordinate() - gc.getCanvas().getWidth() + 89) <= 2 || this.getX_coordinate() == 62 ) {
 				this.setXspeed(-(this.getXspeed()));
 		  }
+		
 	}
 
 	@Override

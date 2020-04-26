@@ -37,4 +37,23 @@ public class InputUtility {
 		}
 		System.out.println(hitKeysPressed);
 	}
+
+	public static ArrayList<KeyCode> getHitKeysPressed() {
+		return hitKeysPressed;
+	}
+
+	public static void setHitKeysPressed(ArrayList<KeyCode> hitKeysPressed) {
+		InputUtility.hitKeysPressed = hitKeysPressed;
+	}
+
+	public static ArrayList<KeyCode> getKeysPressed() {
+		return keysPressed;
+	}
+
+	public static void setKeysPressed(ArrayList<KeyCode> keysPressed) {
+		InputUtility.keysPressed = keysPressed;
+	}
+	
+	
+	
 }
