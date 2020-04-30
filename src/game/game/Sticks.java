@@ -85,8 +85,8 @@ public class Sticks implements Movable{
 		
 		final double lengthStick = 70;
 		final double WidthStick = 10;
-		final double thresholdY = 5;
-		final double thresholdX = 5;
+		final double thresholdY = 2;
+		final double thresholdX = 6;
 		
 //		Side 
 		
@@ -99,7 +99,15 @@ public class Sticks implements Movable{
 				 this.getX_pos2() - (ball.getX_coordinate() + 30) < thresholdX 
 					) {
 				
-				ball.setXspeed(-(ball.getXspeed()));
+				if(ball.getXspeed() == 0) {
+					ball.setXspeed(6);
+				}else {
+					System.out.println("xxxxxxx"+ball.xspeed);
+					
+					ball.setXspeed(-(ball.getXspeed()));
+					System.out.println("aaaaaaa"+ball.xspeed);
+				}
+				
 				return true;
 			}
 		}
@@ -115,7 +123,12 @@ public class Sticks implements Movable{
 				 this.getY_pos2() - (ball.getY_coordinate() + 30) < thresholdY 
 					 ) {
 				
-				ball.setYspeed(-(ball.getYspeed()));
+				if(ball.getYspeed() == 0) {
+					ball.setYspeed(6);
+				}else {
+					ball.setYspeed(-(ball.getYspeed()));
+				}
+				
 				return true;
 			}
 		

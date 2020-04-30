@@ -1,6 +1,7 @@
 package game.scene;
 
 import game.input.*;
+
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -46,17 +47,17 @@ public class GameScene extends StackPane {
 			public void handle(long arg0) {
 				// TODO Auto-generated method stub
 				sticks.move(gc);
-				if(!sticks.hit(ball)) {
-					ball.move(gc);
-					InputUtility.getHitKeysPressed().clear();
-				}
 				
-				if(sticks.hit(ball) && !InputUtility.getHitKeysPressed().isEmpty()) {
+				if(InputUtility.getHitKeysPressed().isEmpty()) {
 					sticks.hit(ball);
 				}
+				
+				ball.move(gc);
+				InputUtility.getHitKeysPressed().clear();
+				
 				ball.bounce(gc);
 				ball.draw(gc);
-				System.out.println(ball.getXspeed()+"   "+sticks.hit(ball));
+//				System.out.println("   "+sticks.hit(ball));
 			}
 		};
 		
