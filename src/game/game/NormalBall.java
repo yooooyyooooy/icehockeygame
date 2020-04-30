@@ -12,6 +12,7 @@ public class NormalBall extends Entity implements Movable, Transitionable {
 	public NormalBall(GraphicsContext gc) {
 		super(gc.getCanvas().getWidth()/2-15 , gc.getCanvas().getHeight()/2-15);
 		this.setImg(new Image("normalball.png",30 ,30, false, false));
+		this.setMoving(true);
 		gc.drawImage(this.getImg(), this.getX_coordinate(), this.getY_coordinate());
 		// TODO Auto-generated constructor stub
 	}
@@ -20,47 +21,36 @@ public class NormalBall extends Entity implements Movable, Transitionable {
 	public void move(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		
-		if(isMoving()) {
-			
-			if(InputUtility.getHitKeyPressed(KeyCode.W) || InputUtility.getHitKeyPressed(KeyCode.UP)) {
-				this.setYspeed(-4);
-			}
-			
-			if(InputUtility.getHitKeyPressed(KeyCode.S) || InputUtility.getHitKeyPressed(KeyCode.DOWN)) {
-				this.setYspeed(4);
-				
-			}
-			
-			if(InputUtility.getHitKeyPressed(KeyCode.A) || InputUtility.getHitKeyPressed(KeyCode.LEFT)) {
-				this.setXspeed(-4);
-				
-			}
-			
-			if(InputUtility.getHitKeyPressed(KeyCode.D) || InputUtility.getHitKeyPressed(KeyCode.RIGHT)) {
-				this.setXspeed(4);
-			}
-			
-			if(InputUtility.isGetHit()) {
-				
-				return;
-			}
-			
-			this.bounce(gc);
-	
-			gc.clearRect(this.getX_coordinate(), this.getY_coordinate(), this.getImg().getWidth(), this.getImg().getHeight());
-			this.setY_coordinate((int)(this.getY_coordinate()+this.getYspeed()));
-			this.setX_coordinate((int)(this.getX_coordinate()+this.getXspeed()));
-			gc.drawImage(this.getImg(), this.getX_coordinate(), this.getY_coordinate());
+
+		if(InputUtility.getHitKeyPressed(KeyCode.W) || InputUtility.getHitKeyPressed(KeyCode.UP)) {
+			this.setYspeed(-6);
 		}
+		
+		if(InputUtility.getHitKeyPressed(KeyCode.S) || InputUtility.getHitKeyPressed(KeyCode.DOWN)) {
+			this.setYspeed(6);
 			
+		}
+		
+		if(InputUtility.getHitKeyPressed(KeyCode.A) || InputUtility.getHitKeyPressed(KeyCode.LEFT)) {
+			this.setXspeed(-6);
+			
+		}
+		
+		if(InputUtility.getHitKeyPressed(KeyCode.D) || InputUtility.getHitKeyPressed(KeyCode.RIGHT)) {
+			this.setXspeed(6);
+		}
+		
+		
 	}
+	
 
 	@Override
 	public void bounce(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		
-		if(Math.abs(this.getY_coordinate() - gc.getCanvas().getHeight() + 30) <= 2  || this.getY_coordinate() <= 11) {
+		if(Math.abs(this.getY_coordinate() - gc.getCanvas().getHeight() + 30) <= 3  || this.getY_coordinate() <= 11) {
 				this.setYspeed(-(this.getYspeed()));
+				System.out.println("x");
 		  }
 		
 		if (Math.abs(this.getX_coordinate() - gc.getCanvas().getWidth() + 89) <= 2 || this.getX_coordinate() <= 62 ) {
@@ -68,6 +58,7 @@ public class NormalBall extends Entity implements Movable, Transitionable {
 		  }
 		
 	}
+	
 	
 
 	@Override

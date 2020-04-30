@@ -19,6 +19,13 @@ public abstract class Entity {
 	
 	public abstract void bounce(GraphicsContext gc);
 	
+	public void draw(GraphicsContext gc) {
+		gc.clearRect(this.getX_coordinate(), this.getY_coordinate(), this.getImg().getWidth(), this.getImg().getHeight());
+		this.setY_coordinate((int)(this.getY_coordinate()+this.getYspeed()));
+		this.setX_coordinate((int)(this.getX_coordinate()+this.getXspeed()));
+		gc.drawImage(this.getImg(), this.getX_coordinate(), this.getY_coordinate());
+	}
+	
 	
 	public Image getImg() {
 		return img;

@@ -26,6 +26,7 @@ public class Sticks implements Movable{
 		gc.fillRoundRect(this.getX_pos1(), this.getY_pos1(), 10, 70, 20, 20);
 		gc.setFill(Color.BLUE);
 		gc.fillRoundRect(this.getX_pos2(), this.getY_pos2(), 10, 70, 20, 20);
+		
 	}
 	
 	
@@ -84,20 +85,21 @@ public class Sticks implements Movable{
 		
 		final double lengthStick = 70;
 		final double WidthStick = 10;
-		final double thresholdY = 0.005;
-		final double thresholdX = 0.005;
+		final double thresholdY = 10;
+		final double thresholdX = 10;
 		
 //		Side 
 		
-		if( ((this.getY_pos1() <= ball.getY_coordinate() + thresholdY) && (ball.getY_coordinate() <= this.getY_pos1() + lengthStick - thresholdY)) ||
-			((this.getY_pos2() <= ball.getY_coordinate() + thresholdY) && (ball.getY_coordinate() <= this.getY_pos2() + lengthStick - thresholdY))	
-				) {
-			if ( ball.getX_coordinate() - (this.getX_pos1() + WidthStick) <= thresholdX ||
+		if( ( Math.abs((this.getY_pos1() + lengthStick/2)  - (ball.getY_coordinate() + 15)) <= lengthStick/2) ||
+				   ( Math.abs((this.getY_pos2() + lengthStick/2)  - (ball.getY_coordinate() + 15)) <= lengthStick/2) 
+				    ) {
+			if ( ball.getX_coordinate() - (this.getX_pos1() + WidthStick) <= thresholdX &&
 				 this.getX_pos1() - (ball.getX_coordinate() + 30) < thresholdX ||
-				 ball.getX_coordinate() - (this.getX_pos2() + WidthStick) <= thresholdX ||
+				 ball.getX_coordinate() - (this.getX_pos2() + WidthStick) <= thresholdX &&
 				 this.getX_pos2() - (ball.getX_coordinate() + 30) < thresholdX 
 					) {
-				ball.setMoving(true);
+				
+				ball.setXspeed(-(ball.getXspeed()));
 				return true;
 			}
 		}
@@ -107,18 +109,20 @@ public class Sticks implements Movable{
 		if ( ((this.getX_pos1() < ball.getX_coordinate()) && (ball.getX_coordinate() < this.getX_pos1() + WidthStick )) ||
 			 ((this.getX_pos2() < ball.getX_coordinate()) && (ball.getX_coordinate() < this.getX_pos2() + WidthStick))
 				) {
-			if ( ball.getY_coordinate() - this.getY_pos1() < thresholdY ||
+			if ( ball.getY_coordinate() - this.getY_pos1() < thresholdY &&
 				 this.getY_pos1() - (ball.getY_coordinate() + 30) < thresholdY ||
-				 ball.getY_coordinate() - this.getY_pos2() < thresholdY ||
+				 ball.getY_coordinate() - this.getY_pos2() < thresholdY &&
 				 this.getY_pos2() - (ball.getY_coordinate() + 30) < thresholdY 
 					 ) {
-				ball.setMoving(true);
+				
+				ball.setYspeed(-(ball.getYspeed()));
 				return true;
 			}
 		
 		}
 		return false;
 	}
+	
 
 	public double getX_pos1() {
 		return x_pos1;

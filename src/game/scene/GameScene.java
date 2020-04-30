@@ -39,14 +39,22 @@ public class GameScene extends StackPane {
 		
 		addListener();
 		
+		
 		AnimationTimer animation = new AnimationTimer() {
 			
 			@Override
 			public void handle(long arg0) {
 				// TODO Auto-generated method stub
 				sticks.move(gc);
-				ball.move(gc);
-				
+				if(sticks.hit(ball)) {
+					ball.move(gc);
+					InputUtility.getHitKeysPressed().clear();
+				}else {
+					sticks.hit(ball);
+				}
+				ball.bounce(gc);
+				ball.draw(gc);
+				System.out.println(ball.getYspeed()+"   "+sticks.hit(ball));
 			}
 		};
 		
@@ -62,13 +70,11 @@ public class GameScene extends StackPane {
 				InputUtility.setKeyPressed(event.getCode(), true);
 				if(sticks.hit(ball)) {
 					InputUtility.sethitKeyPressed(event.getCode(), true);
-					InputUtility.setGetHit(true);
 				}
 			});
-
+		
 		canvas.setOnKeyReleased((KeyEvent event) -> {
 				InputUtility.setKeyPressed(event.getCode(), false);
-				InputUtility.sethitKeyPressed(event.getCode(), false);
 			});
 		
 	}
