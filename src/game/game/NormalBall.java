@@ -19,26 +19,33 @@ public class NormalBall extends Entity implements Movable, Transitionable {
 	@Override
 	public void move(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		this.bounce(gc);
 		
 		if(isMoving()) {
 			
 			if(InputUtility.getHitKeyPressed(KeyCode.W) || InputUtility.getHitKeyPressed(KeyCode.UP)) {
 				this.setYspeed(-4);
-				System.out.println("g");
 			}
 			
 			if(InputUtility.getHitKeyPressed(KeyCode.S) || InputUtility.getHitKeyPressed(KeyCode.DOWN)) {
 				this.setYspeed(4);
+				
 			}
 			
 			if(InputUtility.getHitKeyPressed(KeyCode.A) || InputUtility.getHitKeyPressed(KeyCode.LEFT)) {
 				this.setXspeed(-4);
+				
 			}
 			
 			if(InputUtility.getHitKeyPressed(KeyCode.D) || InputUtility.getHitKeyPressed(KeyCode.RIGHT)) {
 				this.setXspeed(4);
 			}
+			
+			if(InputUtility.isGetHit()) {
+				
+				return;
+			}
+			
+			this.bounce(gc);
 	
 			gc.clearRect(this.getX_coordinate(), this.getY_coordinate(), this.getImg().getWidth(), this.getImg().getHeight());
 			this.setY_coordinate((int)(this.getY_coordinate()+this.getYspeed()));
@@ -52,16 +59,16 @@ public class NormalBall extends Entity implements Movable, Transitionable {
 	public void bounce(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		
-		if(Math.abs(this.getY_coordinate() - gc.getCanvas().getHeight() + 30) <= 2  || this.getY_coordinate() == 11) {
-				System.out.println("pm");
+		if(Math.abs(this.getY_coordinate() - gc.getCanvas().getHeight() + 30) <= 2  || this.getY_coordinate() <= 11) {
 				this.setYspeed(-(this.getYspeed()));
 		  }
 		
-		if (Math.abs(this.getX_coordinate() - gc.getCanvas().getWidth() + 89) <= 2 || this.getX_coordinate() == 62 ) {
+		if (Math.abs(this.getX_coordinate() - gc.getCanvas().getWidth() + 89) <= 2 || this.getX_coordinate() <= 62 ) {
 				this.setXspeed(-(this.getXspeed()));
 		  }
 		
 	}
+	
 
 	@Override
 	public Entity transition(Item item) {

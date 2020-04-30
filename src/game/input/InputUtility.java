@@ -7,6 +7,7 @@ import javafx.scene.input.KeyCode;
 public class InputUtility {
 	private static ArrayList<KeyCode> keysPressed = new ArrayList<>();
 	private static ArrayList<KeyCode> hitKeysPressed = new ArrayList<>();
+	private static boolean getHit = false;
 	
 	public static boolean getKeyPressed(KeyCode keycode) {
 		return keysPressed.contains(keycode);
@@ -52,6 +53,14 @@ public class InputUtility {
 
 	public static void setKeysPressed(ArrayList<KeyCode> keysPressed) {
 		InputUtility.keysPressed = keysPressed;
+	}
+
+	public static boolean isGetHit() {
+		return getHit;
+	}
+
+	public static void setGetHit(boolean getHit) {
+		InputUtility.getHit = getHit;
 	}
 	
 	

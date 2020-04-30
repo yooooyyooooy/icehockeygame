@@ -46,7 +46,7 @@ public class GameScene extends StackPane {
 				// TODO Auto-generated method stub
 				sticks.move(gc);
 				ball.move(gc);
-				System.out.println(ball.getY_coordinate()+"   "+(ball.getY_coordinate() == 11)+ball.getYspeed()+"  "+InputUtility.getHitKeysPressed());
+				
 			}
 		};
 		
@@ -62,6 +62,7 @@ public class GameScene extends StackPane {
 				InputUtility.setKeyPressed(event.getCode(), true);
 				if(sticks.hit(ball)) {
 					InputUtility.sethitKeyPressed(event.getCode(), true);
+					InputUtility.setGetHit(true);
 				}
 			});
 

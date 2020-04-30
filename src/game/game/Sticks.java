@@ -82,17 +82,42 @@ public class Sticks implements Movable{
 	
 	public boolean hit(Entity ball) {
 		
-		if((Math.abs(ball.getX_coordinate() - this.getX_pos1()+10) <= 7 || ball.getX_coordinate()+ball.getImg().getWidth() == this.getX_pos1() ||
-				ball.getY_coordinate()+ball.getImg().getHeight() == this.getY_pos1() || ball.getY_coordinate() == this.getY_pos1()+70) || (Math.abs(ball.getX_coordinate() - this.getX_pos2()+10) <= 7 || ball.getX_coordinate()+ball.getImg().getWidth() == this.getX_pos2() ||
-				ball.getY_coordinate()+ball.getImg().getHeight() == this.getY_pos2() || ball.getY_coordinate() == this.getY_pos2()+70)) {
-			ball.setMoving(true);
-			return true;
-			
-		}else {
-			return false;
-			
+		final double lengthStick = 70;
+		final double WidthStick = 10;
+		final double thresholdY = 0.005;
+		final double thresholdX = 0.005;
+		
+//		Side 
+		
+		if( ((this.getY_pos1() <= ball.getY_coordinate() + thresholdY) && (ball.getY_coordinate() <= this.getY_pos1() + lengthStick - thresholdY)) ||
+			((this.getY_pos2() <= ball.getY_coordinate() + thresholdY) && (ball.getY_coordinate() <= this.getY_pos2() + lengthStick - thresholdY))	
+				) {
+			if ( ball.getX_coordinate() - (this.getX_pos1() + WidthStick) <= thresholdX ||
+				 this.getX_pos1() - (ball.getX_coordinate() + 30) < thresholdX ||
+				 ball.getX_coordinate() - (this.getX_pos2() + WidthStick) <= thresholdX ||
+				 this.getX_pos2() - (ball.getX_coordinate() + 30) < thresholdX 
+					) {
+				ball.setMoving(true);
+				return true;
+			}
 		}
 		
+//		Top
+		
+		if ( ((this.getX_pos1() < ball.getX_coordinate()) && (ball.getX_coordinate() < this.getX_pos1() + WidthStick )) ||
+			 ((this.getX_pos2() < ball.getX_coordinate()) && (ball.getX_coordinate() < this.getX_pos2() + WidthStick))
+				) {
+			if ( ball.getY_coordinate() - this.getY_pos1() < thresholdY ||
+				 this.getY_pos1() - (ball.getY_coordinate() + 30) < thresholdY ||
+				 ball.getY_coordinate() - this.getY_pos2() < thresholdY ||
+				 this.getY_pos2() - (ball.getY_coordinate() + 30) < thresholdY 
+					 ) {
+				ball.setMoving(true);
+				return true;
+			}
+		
+		}
+		return false;
 	}
 
 	public double getX_pos1() {
