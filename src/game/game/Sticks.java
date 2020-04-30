@@ -85,8 +85,8 @@ public class Sticks implements Movable{
 		
 		final double lengthStick = 70;
 		final double WidthStick = 10;
-		final double thresholdY = 10;
-		final double thresholdX = 10;
+		final double thresholdY = 5;
+		final double thresholdX = 5;
 		
 //		Side 
 		

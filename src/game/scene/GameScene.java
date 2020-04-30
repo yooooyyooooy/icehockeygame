@@ -46,15 +46,17 @@ public class GameScene extends StackPane {
 			public void handle(long arg0) {
 				// TODO Auto-generated method stub
 				sticks.move(gc);
-				if(sticks.hit(ball)) {
+				if(!sticks.hit(ball)) {
 					ball.move(gc);
 					InputUtility.getHitKeysPressed().clear();
-				}else {
+				}
+				
+				if(sticks.hit(ball) && !InputUtility.getHitKeysPressed().isEmpty()) {
 					sticks.hit(ball);
 				}
 				ball.bounce(gc);
 				ball.draw(gc);
-				System.out.println(ball.getYspeed()+"   "+sticks.hit(ball));
+				System.out.println(ball.getXspeed()+"   "+sticks.hit(ball));
 			}
 		};
 		

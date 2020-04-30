@@ -50,10 +50,9 @@ public class NormalBall extends Entity implements Movable, Transitionable {
 		
 		if(Math.abs(this.getY_coordinate() - gc.getCanvas().getHeight() + 30) <= 3  || this.getY_coordinate() <= 11) {
 				this.setYspeed(-(this.getYspeed()));
-				System.out.println("x");
 		  }
 		
-		if (Math.abs(this.getX_coordinate() - gc.getCanvas().getWidth() + 89) <= 2 || this.getX_coordinate() <= 62 ) {
+		if (Math.abs(this.getX_coordinate() - gc.getCanvas().getWidth() + 89) <= 6 || this.getX_coordinate() <= 62 ) {
 				this.setXspeed(-(this.getXspeed()));
 		  }
 		
