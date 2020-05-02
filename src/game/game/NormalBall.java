@@ -1,18 +1,23 @@
 package game.game;
 
 import java.lang.Math;
-import game.input.InputUtility;
+
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 
 public class NormalBall extends Entity implements Movable, Transitionable {
+	
+	private final double x_reset;
+	private final double y_reset;
 
 	public NormalBall(GraphicsContext gc) {
 		super(gc.getCanvas().getWidth()/2-15 , gc.getCanvas().getHeight()/2-15);
+		
+		x_reset = gc.getCanvas().getWidth()/2-15;
+		y_reset = gc.getCanvas().getHeight()/2-15;
+		
 		this.setImg(new Image("normalball.png",30 ,30, false, false));
-		this.setMoving(true);
 		gc.drawImage(this.getImg(), this.getX_coordinate(), this.getY_coordinate());
 		// TODO Auto-generated constructor stub
 	}
@@ -20,46 +25,32 @@ public class NormalBall extends Entity implements Movable, Transitionable {
 	@Override
 	public void move(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		
-
-		if(InputUtility.getHitKeyPressed(KeyCode.W) || InputUtility.getHitKeyPressed(KeyCode.UP)) {
-			this.setYspeed(-6);
-		}
-		
-		if(InputUtility.getHitKeyPressed(KeyCode.S) || InputUtility.getHitKeyPressed(KeyCode.DOWN)) {
-			this.setYspeed(6);
-			
-		}
-		
-		if(InputUtility.getHitKeyPressed(KeyCode.A) || InputUtility.getHitKeyPressed(KeyCode.LEFT)) {
-			this.setXspeed(-6);
-			
-		}
-		
-		if(InputUtility.getHitKeyPressed(KeyCode.D) || InputUtility.getHitKeyPressed(KeyCode.RIGHT)) {
-			this.setXspeed(6);
-		}
-		
-		
+		draw(gc);
 	}
 	
-
+	
 	@Override
 	public void bounce(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		
-		if(Math.abs(this.getY_coordinate() - gc.getCanvas().getHeight() + 30) <= 3  || this.getY_coordinate() <= 11) {
+
+		if(collidewithWall_X(gc)) {
 				this.setYspeed(-(this.getYspeed()));
 		  }
 		
-		if (Math.abs(this.getX_coordinate() - gc.getCanvas().getWidth() + 89) <= 7 || this.getX_coordinate() <= 62 ) {
-				this.setXspeed(-(this.getXspeed()));
-		  }
-		
+//		if(collidewithWall_Y(gc)) {
+//				this.setXspeed(-(this.getXspeed()));
+//		  }
+	
+	}
+	
+	public boolean isWinning(GraphicsContext gc) {
+		if(collidewithWall_Y(gc)) {
+			return true;
+	  }
+		return false;
 	}
 	
 	
-
 	@Override
 	public Entity transition(Item item) {
 		// TODO Auto-generated method stub
@@ -72,5 +63,15 @@ public class NormalBall extends Entity implements Movable, Transitionable {
 		}
 		
 	}
+
+	public double getX_reset() {
+		return x_reset;
+	}
+
+	public double getY_reset() {
+		return y_reset;
+	}
+	
+	
 
 }

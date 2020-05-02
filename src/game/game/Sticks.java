@@ -2,11 +2,17 @@ package game.game;
 
 import java.lang.Math;
 import game.input.*;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 
 public class Sticks implements Movable{
+	
+	private final double x1_reset;
+	private final double y1_reset;
+	private final double x2_reset;
+	private final double y2_reset;
 	
 	private double x_pos1;
 	private double y_pos1;
@@ -18,10 +24,15 @@ public class Sticks implements Movable{
 	private double y_speed2;
 
 	public Sticks(GraphicsContext gc) {
-		this.setX_pos1(50);
-		this.setY_pos1(gc.getCanvas().getHeight()/2-35);
-		this.setX_pos2(gc.getCanvas().getWidth()-60);
-		this.setY_pos2(gc.getCanvas().getHeight()/2-35);
+		x1_reset = 50;
+		y1_reset = gc.getCanvas().getHeight()/2-35;
+		x2_reset = gc.getCanvas().getWidth()-60;
+		y2_reset = gc.getCanvas().getHeight()/2-35;
+		
+		this.setX_pos1(getX1_reset());
+		this.setY_pos1(getY1_reset());
+		this.setX_pos2(getX2_reset());
+		this.setY_pos2(getY2_reset());
 		gc.setFill(Color.RED);
 		gc.fillRoundRect(this.getX_pos1(), this.getY_pos1(), 10, 70, 20, 20);
 		gc.setFill(Color.BLUE);
@@ -50,11 +61,6 @@ public class Sticks implements Movable{
 			this.setX_speed1(3);
 		}
 		
-		gc.clearRect(this.getX_pos1(), this.getY_pos1(), 10, 70);
-		this.setX_pos1(this.getX_pos1()+this.getX_speed1());
-		this.setY_pos1(this.getY_pos1()+this.getY_speed1());
-		gc.setFill(Color.RED);
-		gc.fillRoundRect(this.getX_pos1(), this.getY_pos1(), 10, 70, 20, 20);
 		
 		//Blue Stick
 		this.setX_speed2(0);
@@ -73,66 +79,69 @@ public class Sticks implements Movable{
 			this.setX_speed2(3);
 			
 		}
-		
-		gc.clearRect(this.getX_pos2(), this.getY_pos2(), 10, 70);
-		this.setX_pos2(this.getX_pos2()+this.getX_speed2());
-		this.setY_pos2(this.getY_pos2()+this.getY_speed2());
-		gc.setFill(Color.BLUE);
-		gc.fillRoundRect(this.getX_pos2(), this.getY_pos2(), 10, 70, 20, 20);
 	}
 	
 	public boolean hit(Entity ball) {
-		
-		final double lengthStick = 70;
-		final double WidthStick = 10;
-		final double thresholdY = 2;
-		final double thresholdX = 6;
-		
-//		Side 
-		
-		if( ( Math.abs((this.getY_pos1() + lengthStick/2)  - (ball.getY_coordinate() + 15)) <= lengthStick/2) ||
-				   ( Math.abs((this.getY_pos2() + lengthStick/2)  - (ball.getY_coordinate() + 15)) <= lengthStick/2) 
-				    ) {
-			if ( ball.getX_coordinate() - (this.getX_pos1() + WidthStick) <= thresholdX &&
-				 this.getX_pos1() - (ball.getX_coordinate() + 30) < thresholdX ||
-				 ball.getX_coordinate() - (this.getX_pos2() + WidthStick) <= thresholdX &&
-				 this.getX_pos2() - (ball.getX_coordinate() + 30) < thresholdX 
-					) {
-				
-				if(ball.getXspeed() == 0) {
-					ball.setXspeed(6);
-				}else {
-					System.out.println("xxxxxxx"+ball.xspeed);
-					
-					ball.setXspeed(-(ball.getXspeed()));
-					System.out.println("aaaaaaa"+ball.xspeed);
-				}
-				
-				return true;
+		if(ball.collideWithSide1(this)) {
+			if(ball.getXspeed() == 0){
+				ball.setXspeed(6);
+				ball.setYspeed(-6);
+			}else {
+				ball.setXspeed(-(ball.getXspeed()));
 			}
+			return true;
 		}
 		
-//		Top
-		
-		if ( ((this.getX_pos1() < ball.getX_coordinate()) && (ball.getX_coordinate() < this.getX_pos1() + WidthStick )) ||
-			 ((this.getX_pos2() < ball.getX_coordinate()) && (ball.getX_coordinate() < this.getX_pos2() + WidthStick))
-				) {
-			if ( ball.getY_coordinate() - this.getY_pos1() < thresholdY &&
-				 this.getY_pos1() - (ball.getY_coordinate() + 30) < thresholdY ||
-				 ball.getY_coordinate() - this.getY_pos2() < thresholdY &&
-				 this.getY_pos2() - (ball.getY_coordinate() + 30) < thresholdY 
-					 ) {
-				
-				if(ball.getYspeed() == 0) {
-					ball.setYspeed(6);
-				}else {
-					ball.setYspeed(-(ball.getYspeed()));
-				}
-				
-				return true;
+		if(ball.collideWithSide2(this)) {
+			if(ball.getXspeed() == 0){
+				ball.setXspeed(-6);
+				ball.setYspeed(-6);
+			}else {
+				ball.setXspeed(-(ball.getXspeed()));
 			}
-		
+			return true;
 		}
+		
+		if(ball.collideWithTopOrButtom1(this) == "TOP") {
+			if(ball.getYspeed() == 0){
+				ball.setXspeed(6);
+				ball.setYspeed(-6);
+			}else {
+				ball.setYspeed(-(ball.getYspeed()));
+			}
+			return true;
+		}
+		
+		if(ball.collideWithTopOrButtom1(this) == "BUTTOM") {
+			if(ball.getYspeed() == 0){
+				ball.setXspeed(6);
+				ball.setYspeed(6);
+			}else {
+				ball.setYspeed(-(ball.getYspeed()));
+			}
+			return true;
+		}
+		
+		if(ball.collideWithTopOrButtom2(this) == "TOP") {
+			if(ball.getYspeed() == 0){
+				ball.setXspeed(-6);
+				ball.setYspeed(-6);
+			}else {
+				ball.setYspeed(-(ball.getYspeed()));
+			}
+			return true;
+		}
+		
+		if(ball.collideWithTopOrButtom1(this) == "BUTTOM") {
+			if(ball.getYspeed() == 0){
+				ball.setXspeed(-6);
+				ball.setYspeed(6);
+			}else {
+				ball.setYspeed(-(ball.getYspeed()));
+			}
+			return true;
+		}
+		
 		return false;
 	}
 	
@@ -217,4 +226,64 @@ public class Sticks implements Movable{
 	}
 	
 	
+	
+	public double getX1_reset() {
+		return x1_reset;
+	}
+
+
+	public double getY1_reset() {
+		return y1_reset;
+	}
+
+
+	public double getX2_reset() {
+		return x2_reset;
+	}
+
+
+	public double getY2_reset() {
+		return y2_reset;
+	}
+
+
+	public void draw(GraphicsContext gc) {
+		gc.clearRect(this.getX_pos1(), this.getY_pos1(), 10, 70);
+		this.setX_pos1(this.getX_pos1()+this.getX_speed1());
+		this.setY_pos1(this.getY_pos1()+this.getY_speed1());
+		gc.setFill(Color.RED);
+		gc.fillRoundRect(this.getX_pos1(), this.getY_pos1(), 10, 70, 20, 20);
+		
+		gc.clearRect(this.getX_pos2(), this.getY_pos2(), 10, 70);
+		this.setX_pos2(this.getX_pos2()+this.getX_speed2());
+		this.setY_pos2(this.getY_pos2()+this.getY_speed2());
+		gc.setFill(Color.BLUE);
+		gc.fillRoundRect(this.getX_pos2(), this.getY_pos2(), 10, 70, 20, 20);
+		
+		
+	}
+	
+	public Rectangle2D getBoundarySide1() {
+        return new Rectangle2D(getX_pos1(), getY_pos1(), 10, 70);
+    }
+	
+	public Rectangle2D getBoundaryTop1() {
+        return new Rectangle2D(getX_pos1(), getY_pos1()-5, 10, 5);
+    }
+	
+	public Rectangle2D getBoundaryButtom1() {
+        return new Rectangle2D(getX_pos1(), getY_pos1()+70, 10, 5);
+    }
+
+	public Rectangle2D getBoundarySide2() {
+        return new Rectangle2D(getX_pos2(), getY_pos2(), 10, 70);
+    }
+	
+	public Rectangle2D getBoundaryTop2() {
+        return new Rectangle2D(getX_pos2(), getY_pos2()-5, 10, 5);
+    }
+	
+	public Rectangle2D getBoundaryButtom2() {
+        return new Rectangle2D(getX_pos2(), getY_pos2()+70, 10, 5);
+    }
 }

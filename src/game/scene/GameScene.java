@@ -3,6 +3,7 @@ package game.scene;
 import game.input.*;
 
 import javafx.animation.AnimationTimer;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -20,6 +21,7 @@ public class GameScene extends StackPane {
 	private NormalBall ball;
 	private Sticks sticks;
 	private Canvas canvas;
+	private boolean isStarted = false;
 	
 	public GameScene() {
 		canvas = new Canvas(iv.getWidth(), iv.getHeight());
@@ -38,7 +40,7 @@ public class GameScene extends StackPane {
 		sticks = new Sticks(gc);
 		ball = new NormalBall(gc);
 		
-		addListener();
+		
 		
 		
 		AnimationTimer animation = new AnimationTimer() {
@@ -46,18 +48,31 @@ public class GameScene extends StackPane {
 			@Override
 			public void handle(long arg0) {
 				// TODO Auto-generated method stub
-				sticks.move(gc);
-				
-				if(InputUtility.getHitKeysPressed().isEmpty()) {
-					sticks.hit(ball);
+				ball.move(gc);
+				sticks.draw(gc);
+				if(!isStarted) {
+					try {
+						Thread.sleep(3000);
+						System.out.println("sleep");
+						
+					} catch(InterruptedException e) {
+						e.printStackTrace();
+					}
+					isStarted = true;
+					
 				}
 				
-				ball.move(gc);
-				InputUtility.getHitKeysPressed().clear();
+				addListener();
+				sticks.move(gc);
+			
+				sticks.hit(ball);		
 				
 				ball.bounce(gc);
-				ball.draw(gc);
-//				System.out.println("   "+sticks.hit(ball));
+				
+				if(ball.isWinning(gc)) {
+					reset(gc);
+					isStarted = false;
+				}
 			}
 		};
 		
@@ -71,9 +86,6 @@ public class GameScene extends StackPane {
 		
 		canvas.setOnKeyPressed((KeyEvent event) -> {
 				InputUtility.setKeyPressed(event.getCode(), true);
-				if(sticks.hit(ball)) {
-					InputUtility.sethitKeyPressed(event.getCode(), true);
-				}
 			});
 		
 		canvas.setOnKeyReleased((KeyEvent event) -> {
@@ -81,5 +93,20 @@ public class GameScene extends StackPane {
 			});
 		
 	}
-
+	public void reset(GraphicsContext gc) {
+		gc.clearRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
+		
+		sticks.setX_pos1(sticks.getX1_reset());
+		sticks.setY_pos1(sticks.getY1_reset());
+		sticks.setX_pos2(sticks.getX2_reset());
+		sticks.setY_pos2(sticks.getY2_reset());
+		
+		ball.setX_coordinate(ball.getX_reset());
+		ball.setY_coordinate(ball.getY_reset());
+		
+		ball.setXspeed(0);
+		ball.setYspeed(0);
+		
+	}
+	
 }
