@@ -1,7 +1,7 @@
 package game.scene;
 
 import game.input.*;
-
+import game.sharedObject.ResourceHolder;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.Canvas;
@@ -49,29 +49,27 @@ public class GameScene extends StackPane {
 			@Override
 			public void handle(long arg0) {
 				// TODO Auto-generated method stub
+
+				if(isStarted) {
+					addListener();
+					
+				}else {
+					playVideo();
+					isStarted = true;
+				}
+				
 				ball.move(gc);
 				sticks.draw(gc);
 				
-				if(!isStarted) {
-					try {
-
-						System.out.println("Ready");
-						Thread.sleep(1500);
-						System.out.println("Go!");
-						
-					} catch(InterruptedException e) {
-						e.printStackTrace();
-					}
-					isStarted = true;
-					
-				}
 				
-				addListener();
+				
 				sticks.move(gc);
 			
 				sticks.hit(ball);		
 				
 				ball.bounce(gc);
+				
+				
 				
 				if(ball.isWinning(gc)) {
 					if (ball.getX_coordinate() <= 60){
@@ -121,5 +119,15 @@ public class GameScene extends StackPane {
 		ball.setYspeed(0);
 		
 	}
+	
+	public void playVideo() {
+		ResourceHolder.threeSecWaiting.setVisible(true);
+		ResourceHolder.threeSecWaiting.getMediaPlayer().play();
+		ResourceHolder.threeSecWaiting.getMediaPlayer().setOnEndOfMedia(() -> {
+			ResourceHolder.threeSecWaiting.setVisible(false);
+		});
+		
+	}
+	
 	
 }
