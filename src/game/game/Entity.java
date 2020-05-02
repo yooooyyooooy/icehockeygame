@@ -69,8 +69,9 @@ public abstract class Entity {
 	}
 	
 	public boolean collidewithWall_Y(GraphicsContext gc) {
-		Rectangle2D wallRight = new Rectangle2D(45, 0, 5, gc.getCanvas().getHeight());
-		Rectangle2D wallLeft = new Rectangle2D(gc.getCanvas().getWidth()-50, 0, 5, gc.getCanvas().getHeight());
+		Rectangle2D wallLeft = new Rectangle2D(45, 0, 5, gc.getCanvas().getHeight());
+		Rectangle2D wallRight = new Rectangle2D(gc.getCanvas().getWidth()-50, 0, 5, gc.getCanvas().getHeight());
+		
 		
 		return wallRight.intersects(this.getBoundary(getImg().getWidth(), getImg().getHeight())) ||
 				   wallLeft.intersects(this.getBoundary(getImg().getWidth(), getImg().getHeight()));

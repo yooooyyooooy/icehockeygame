@@ -1,5 +1,6 @@
 package Main;
 
+import game.game.Player;
 import game.scene.GameScene;
 import game.scene.PlayerScene;
 import game.scene.TutorialScene;
@@ -9,6 +10,8 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -49,7 +52,8 @@ public class Main extends Application {
 			@Override
 			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				GameScene gamescene = new GameScene();
+				GameScene gamescene = new GameScene(playerscene.getP1Name().getText(),
+						playerscene.getP2Name().getText());
 				stg.setScene(new Scene(gamescene));
 			}
 		}); 
@@ -78,7 +82,11 @@ public class Main extends Application {
 			@Override
 			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				GameScene gamescene = new GameScene();
+				System.out.println("Welcome " + playerscene.getP1Name().getText() + "!");
+				System.out.println("Welcome " + playerscene.getP2Name().getText() + "!");
+				
+				GameScene gamescene = new GameScene(playerscene.getP1Name().getText(),
+						playerscene.getP2Name().getText());
 				stg.setScene(new Scene(gamescene));
 			}
 		});

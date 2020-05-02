@@ -22,8 +22,9 @@ public class GameScene extends StackPane {
 	private Sticks sticks;
 	private Canvas canvas;
 	private boolean isStarted = false;
+
 	
-	public GameScene() {
+	public GameScene(String name1, String name2) {
 		canvas = new Canvas(iv.getWidth(), iv.getHeight());
 		canvas.setVisible(true);
 		canvas.setFocusTraversable(true);
@@ -39,8 +40,8 @@ public class GameScene extends StackPane {
 				
 		sticks = new Sticks(gc);
 		ball = new NormalBall(gc);
-		
-		
+
+		Player player = new Player(name1, name2);
 		
 		
 		AnimationTimer animation = new AnimationTimer() {
@@ -50,10 +51,13 @@ public class GameScene extends StackPane {
 				// TODO Auto-generated method stub
 				ball.move(gc);
 				sticks.draw(gc);
+				
 				if(!isStarted) {
 					try {
-						Thread.sleep(3000);
-						System.out.println("sleep");
+
+						System.out.println("Ready");
+						Thread.sleep(1500);
+						System.out.println("Go!");
 						
 					} catch(InterruptedException e) {
 						e.printStackTrace();
@@ -70,6 +74,15 @@ public class GameScene extends StackPane {
 				ball.bounce(gc);
 				
 				if(ball.isWinning(gc)) {
+					if (ball.getX_coordinate() <= 60){
+						player.setScore2(player.getScore2() + 1);
+						System.out.println("Score: " + player.getScore1() + ", " + player.getScore2());
+						System.out.println(player.getName1());
+					}else if (ball.getX_coordinate() >= gc.getCanvas().getWidth()-80) {
+						player.setScore1(player.getScore1() + 1);
+						System.out.println("Score: " + player.getScore1() + ", " + player.getScore2());
+						System.out.println(player.getName2());
+					}
 					reset(gc);
 					isStarted = false;
 				}

@@ -1,13 +1,16 @@
 package game.scene;
 
+import game.game.Player;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -32,7 +35,9 @@ public class PlayerScene extends VBox{
 	private Text p2Text;
 	private Button playButton;
 	private Button cancelButton;
+
 	
+
 
 	public PlayerScene() {
 		this.setAlignment(Pos.CENTER);
@@ -95,12 +100,37 @@ public class PlayerScene extends VBox{
 		grid.add(p2Text, 1, 0);
 		grid.add(p2Name, 1, 1);
 		
+		
+		
 		HBox h2 = new HBox(10);
 		h2.setPadding(new Insets(10));
 		h2.setAlignment(Pos.BOTTOM_RIGHT);
 		playButton = new Button("PLAY GAME!");
 		cancelButton = new Button("Cancel");
 		h2.getChildren().addAll(cancelButton, playButton);
+		
+		
+		
+//		playButton.setOnMouseEntered(new EventHandler<Event>() {
+//
+//			@Override
+//			public void handle(Event arg0) {
+//				// TODO Auto-generated method stub
+//				playButton.setStyle("-fx-background-color: Green");
+//			}
+//		});
+//		playButton.setOnMouseExited(new EventHandler<Event>() {
+//
+//			@Override
+//			public void handle(Event arg0) {
+//				// TODO Auto-generated method stub
+//				playButton.setStyle("-fx-background-color: e0e0e0");
+//			}
+//		});
+		
+
+		
+		
 		
 		this.getChildren().addAll(selectTimeText, h1, grid, h2);
 		
@@ -137,7 +167,6 @@ public class PlayerScene extends VBox{
 	public void setP2Name(TextField p2Name) {
 		this.p2Name = p2Name;
 	}
-	
-	
+
 	
 }
