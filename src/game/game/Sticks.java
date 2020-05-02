@@ -6,6 +6,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 
 public class Sticks implements Movable{
 	
@@ -49,16 +50,17 @@ public class Sticks implements Movable{
 		this.setX_speed1(0);
 		this.setY_speed1(0);
 		if(InputUtility.getKeyPressed(KeyCode.W) && this.getY_pos1() > 10) {
-			this.setY_speed1(-3);
+			this.setY_speed1(-3/2);
+			
 			
 		}if(InputUtility.getKeyPressed(KeyCode.S) && this.getY_pos1() < gc.getCanvas().getHeight()-80 ) {
-			this.setY_speed1(3);
+			this.setY_speed1(3/2);
 
 		}if(InputUtility.getKeyPressed(KeyCode.A) && this.getX_pos1() > 50 ) {
-			this.setX_speed1(-3);
+			this.setX_speed1(-3/2);
 			
 		}if(InputUtility.getKeyPressed(KeyCode.D) && this.getX_pos1() < gc.getCanvas().getWidth()/2-13 ) {
-			this.setX_speed1(3);
+			this.setX_speed1(3/2);
 		}
 		
 		
@@ -66,79 +68,112 @@ public class Sticks implements Movable{
 		this.setX_speed2(0);
 		this.setY_speed2(0);
 		if(InputUtility.getKeyPressed(KeyCode.UP) && this.getY_pos2() > 10 ) {
-			this.setY_speed2(-3);
+			this.setY_speed2(-3/2);
 			
 		}if(InputUtility.getKeyPressed(KeyCode.DOWN) && this.getY_pos2() < gc.getCanvas().getHeight()-80 ) {
-			this.setY_speed2(3);
+			this.setY_speed2(3/2);
 
 			
 		}if(InputUtility.getKeyPressed(KeyCode.LEFT) && this.getX_pos2() > gc.getCanvas().getWidth()/2+3 ) {
-			this.setX_speed2(-3);
+			this.setX_speed2(-3/2);
 			
 		}if(InputUtility.getKeyPressed(KeyCode.RIGHT) && this.getX_pos2() < gc.getCanvas().getWidth()-60) {
-			this.setX_speed2(3);
+			this.setX_speed2(3/2);
 			
 		}
 	}
 	
 	public boolean hit(Entity ball) {
 		if(ball.collideWithSide1(this)) {
+			this.setX_speed1(0);
 			if(ball.getXspeed() == 0){
-				ball.setXspeed(5);
-				ball.setYspeed(-5);
+				ball.setXspeed(6/2);
+				ball.setYspeed(-6/2);
 			}else {
 				ball.setXspeed(-(ball.getXspeed()));
 			}
+			
+			if(ball.getX_coordinate() > getX_pos1()) {
+				ball.setX_coordinate(x_pos1+10);
+			}else if(ball.getX_coordinate() < getX_pos1()) {
+				ball.setX_coordinate(x_pos1-30);
+			}
+			System.out.println("1");
 			return true;
 		}
 		
 		if(ball.collideWithSide2(this)) {
 			if(ball.getXspeed() == 0){
-				ball.setXspeed(-5);
-				ball.setYspeed(-5);
+				ball.setXspeed(-6/2);
+				ball.setYspeed(-6/2);
 			}else {
 				ball.setXspeed(-(ball.getXspeed()));
 			}
+			
+			if(ball.getX_coordinate() > getX_pos2()) {
+				ball.setX_coordinate(x_pos2+10);
+			}else if(ball.getX_coordinate() < getX_pos2()) {
+				ball.setX_coordinate(x_pos2-30);
+			}
+			System.out.println("2");
+			this.setX_speed2(0);
 			return true;
 		}
 		
 		if(ball.collideWithTopOrButtom1(this) == "TOP") {
 			if(ball.getYspeed() == 0){
-				ball.setXspeed(5);
-				ball.setYspeed(-5);
+				ball.setXspeed(6/2);
+				ball.setYspeed(-6/2);
 			}else {
 				ball.setYspeed(-(ball.getYspeed()));
 			}
+	
+			ball.setY_coordinate(y_pos1-30);
+			System.out.println("3");
+			this.setY_speed1(0);
 			return true;
 		}
 		
 		if(ball.collideWithTopOrButtom1(this) == "BUTTOM") {
 			if(ball.getYspeed() == 0){
-				ball.setXspeed(5);
-				ball.setYspeed(5);
+				ball.setXspeed(6/2);
+				ball.setYspeed(6/2);
 			}else {
 				ball.setYspeed(-(ball.getYspeed()));
 			}
+			
+			ball.setY_coordinate(y_pos1+70);
+			System.out.println("4");
+			this.setY_speed1(0);
 			return true;
 		}
 		
 		if(ball.collideWithTopOrButtom2(this) == "TOP") {
+			
 			if(ball.getYspeed() == 0){
-				ball.setXspeed(-5);
-				ball.setYspeed(-5);
+				ball.setXspeed(-6/2);
+				ball.setYspeed(-6/2);
 			}else {
 				ball.setYspeed(-(ball.getYspeed()));
 			}
+			
+			ball.setY_coordinate(y_pos2-30);
+			System.out.println("5");
+			this.setY_speed2(0);
 			return true;
 		}
 		
-		if(ball.collideWithTopOrButtom1(this) == "BUTTOM") {
+		if(ball.collideWithTopOrButtom2(this) == "BUTTOM") {
 			if(ball.getYspeed() == 0){
-				ball.setXspeed(-5);
-				ball.setYspeed(5);
+				ball.setXspeed(-6/2);
+				ball.setYspeed(6/2);
 			}else {
 				ball.setYspeed(-(ball.getYspeed()));
 			}
+			
+			ball.setY_coordinate(y_pos2+70);
+			System.out.println("6");	
+			this.setY_speed2(0);
 			return true;
 		}
 		
@@ -260,7 +295,6 @@ public class Sticks implements Movable{
 		gc.setFill(Color.BLUE);
 		gc.fillRoundRect(this.getX_pos2(), this.getY_pos2(), 10, 70, 20, 20);
 		
-		
 	}
 	
 	public Rectangle2D getBoundarySide1() {
@@ -268,11 +302,11 @@ public class Sticks implements Movable{
     }
 	
 	public Rectangle2D getBoundaryTop1() {
-        return new Rectangle2D(getX_pos1(), getY_pos1()-5, 10, 5);
+        return new Rectangle2D(getX_pos1(), getY_pos1()-5, 10, 1);
     }
 	
 	public Rectangle2D getBoundaryButtom1() {
-        return new Rectangle2D(getX_pos1(), getY_pos1()+70, 10, 5);
+        return new Rectangle2D(getX_pos1(), getY_pos1()+70, 10, 1);
     }
 
 	public Rectangle2D getBoundarySide2() {
@@ -280,10 +314,10 @@ public class Sticks implements Movable{
     }
 	
 	public Rectangle2D getBoundaryTop2() {
-        return new Rectangle2D(getX_pos2(), getY_pos2()-5, 10, 5);
+        return new Rectangle2D(getX_pos2(), getY_pos2()-5, 10, 1);
     }
 	
 	public Rectangle2D getBoundaryButtom2() {
-        return new Rectangle2D(getX_pos2(), getY_pos2()+70, 10, 5);
+        return new Rectangle2D(getX_pos2(), getY_pos2()+70, 10, 1);
     }
 }
