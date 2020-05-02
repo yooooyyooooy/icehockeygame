@@ -24,6 +24,7 @@ public class Sticks implements Movable{
 	private double x_speed2;
 	private double y_speed2;
 
+	//ควยปลื้ม
 	public Sticks(GraphicsContext gc) {
 		x1_reset = 50;
 		y1_reset = gc.getCanvas().getHeight()/2-35;
