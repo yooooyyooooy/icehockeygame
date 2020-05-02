@@ -3,7 +3,6 @@ package game.scene;
 import game.input.*;
 import game.sharedObject.ResourceHolder;
 import javafx.animation.AnimationTimer;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -61,27 +60,24 @@ public class GameScene extends StackPane {
 				ball.move(gc);
 				sticks.draw(gc);
 				
-				
-				
 				sticks.move(gc);
 			
 				sticks.hit(ball);		
 				
 				ball.bounce(gc);
 				
-				
-				
 				if(ball.isWinning(gc)) {
 					if (ball.getX_coordinate() <= 60){
 						player.setScore2(player.getScore2() + 1);
 						System.out.println("Score: " + player.getScore1() + ", " + player.getScore2());
 						System.out.println(player.getName1());
+						reset(gc, sticks.getX1_reset() + 40);
 					}else if (ball.getX_coordinate() >= gc.getCanvas().getWidth()-80) {
 						player.setScore1(player.getScore1() + 1);
 						System.out.println("Score: " + player.getScore1() + ", " + player.getScore2());
 						System.out.println(player.getName2());
+						reset(gc, sticks.getX2_reset() - 70);
 					}
-					reset(gc);
 					isStarted = false;
 				}
 			}
@@ -89,7 +85,7 @@ public class GameScene extends StackPane {
 		
 		animation.start();
 		
-		this.getChildren().add(canvas);
+		this.getChildren().addAll(canvas, ResourceHolder.threeSecWaiting);
 	
 	}
 
@@ -104,7 +100,7 @@ public class GameScene extends StackPane {
 			});
 		
 	}
-	public void reset(GraphicsContext gc) {
+	public void reset(GraphicsContext gc, double toLoser) {
 		gc.clearRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 		
 		sticks.setX_pos1(sticks.getX1_reset());
@@ -112,7 +108,7 @@ public class GameScene extends StackPane {
 		sticks.setX_pos2(sticks.getX2_reset());
 		sticks.setY_pos2(sticks.getY2_reset());
 		
-		ball.setX_coordinate(ball.getX_reset());
+		ball.setX_coordinate(toLoser);
 		ball.setY_coordinate(ball.getY_reset());
 		
 		ball.setXspeed(0);
@@ -124,6 +120,7 @@ public class GameScene extends StackPane {
 		ResourceHolder.threeSecWaiting.setVisible(true);
 		ResourceHolder.threeSecWaiting.getMediaPlayer().play();
 		ResourceHolder.threeSecWaiting.getMediaPlayer().setOnEndOfMedia(() -> {
+			ResourceHolder.threeSecWaiting.getMediaPlayer().stop();
 			ResourceHolder.threeSecWaiting.setVisible(false);
 		});
 		

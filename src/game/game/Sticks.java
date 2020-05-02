@@ -84,8 +84,8 @@ public class Sticks implements Movable{
 	public boolean hit(Entity ball) {
 		if(ball.collideWithSide1(this)) {
 			if(ball.getXspeed() == 0){
-				ball.setXspeed(3.5);
-				ball.setYspeed(-3);
+				ball.setXspeed(5);
+				ball.setYspeed(-5);
 			}else {
 				ball.setXspeed(-(ball.getXspeed()));
 			}
@@ -94,8 +94,8 @@ public class Sticks implements Movable{
 		
 		if(ball.collideWithSide2(this)) {
 			if(ball.getXspeed() == 0){
-				ball.setXspeed(-3.5);
-				ball.setYspeed(-3.5);
+				ball.setXspeed(-5);
+				ball.setYspeed(-5);
 			}else {
 				ball.setXspeed(-(ball.getXspeed()));
 			}
@@ -104,8 +104,8 @@ public class Sticks implements Movable{
 		
 		if(ball.collideWithTopOrButtom1(this) == "TOP") {
 			if(ball.getYspeed() == 0){
-				ball.setXspeed(3.5);
-				ball.setYspeed(-3.5);
+				ball.setXspeed(5);
+				ball.setYspeed(-5);
 			}else {
 				ball.setYspeed(-(ball.getYspeed()));
 			}
@@ -114,8 +114,8 @@ public class Sticks implements Movable{
 		
 		if(ball.collideWithTopOrButtom1(this) == "BUTTOM") {
 			if(ball.getYspeed() == 0){
-				ball.setXspeed(3.5);
-				ball.setYspeed(3.5);
+				ball.setXspeed(5);
+				ball.setYspeed(5);
 			}else {
 				ball.setYspeed(-(ball.getYspeed()));
 			}
@@ -124,8 +124,8 @@ public class Sticks implements Movable{
 		
 		if(ball.collideWithTopOrButtom2(this) == "TOP") {
 			if(ball.getYspeed() == 0){
-				ball.setXspeed(-3.5);
-				ball.setYspeed(-3.5);
+				ball.setXspeed(-5);
+				ball.setYspeed(-5);
 			}else {
 				ball.setYspeed(-(ball.getYspeed()));
 			}
@@ -134,8 +134,8 @@ public class Sticks implements Movable{
 		
 		if(ball.collideWithTopOrButtom1(this) == "BUTTOM") {
 			if(ball.getYspeed() == 0){
-				ball.setXspeed(-3.5);
-				ball.setYspeed(3.5);
+				ball.setXspeed(-5);
+				ball.setYspeed(5);
 			}else {
 				ball.setYspeed(-(ball.getYspeed()));
 			}

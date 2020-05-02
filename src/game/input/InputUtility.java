@@ -19,7 +19,7 @@ public class InputUtility {
 		}else{
 			keysPressed.remove(keycode);
 		}
-		System.out.println(keysPressed);
+//		System.out.println(keysPressed);
 	}
 
 	public static ArrayList<KeyCode> getKeysPressed() {

@@ -6,6 +6,7 @@ import game.scene.PlayerScene;
 import game.scene.TutorialScene;
 import game.scene.WelcomeScene;
 import game.scene.WinningScene;
+import game.sharedObject.ResourceHolder;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -108,7 +109,8 @@ public class Main extends Application {
 	}
 		public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		launch(args);
+//			ResourceHolder.loadResource();
+			launch(args);
 	}
 	
 
