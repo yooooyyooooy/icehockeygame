@@ -1,12 +1,12 @@
 package game.game;
 
-import java.lang.Math;
+
 import game.input.*;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
+
 
 public class Sticks implements Movable{
 	private final int instant_speed = 3;

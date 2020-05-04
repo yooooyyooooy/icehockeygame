@@ -21,6 +21,7 @@ public class GameScene extends StackPane {
 	private Sticks sticks;
 	private Canvas canvas;
 	private boolean isStarted = false;
+	private boolean gameOver = false; 
 
 	
 	public GameScene(String name1, String name2) {
@@ -53,7 +54,7 @@ public class GameScene extends StackPane {
 					addListener();
 					
 				}else {
-//					playVideo();
+					playVideo();
 					isStarted = true;
 				}
 				
@@ -86,10 +87,34 @@ public class GameScene extends StackPane {
 					
 					isStarted = false;
 				}
+				
+				
 			}
 		};
 		
 		animation.start();
+		
+		// game timer.
+		Thread timer = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				try {
+					Thread.sleep(5000);
+					animation.stop();
+					System.out.println("Game over.");
+					gameOver = true;
+					System.out.println(gameOver);
+					
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					
+				}
+			}
+		});
+		timer.start();
 		
 		this.getChildren().addAll(canvas);
 	
@@ -131,6 +156,16 @@ public class GameScene extends StackPane {
 		});
 		
 	}
+
+	public boolean isGameOver() {
+		return gameOver;
+	}
+
+	public void setGameOver(boolean gameOver) {
+		this.gameOver = gameOver;
+	}
+	
+	
 	
 	
 }

@@ -11,11 +11,11 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+	
+	private boolean startGameTimer = true;
 	
 	@Override
 	public void start(Stage stg) throws Exception {
@@ -23,10 +23,14 @@ public class Main extends Application {
 		WelcomeScene welcomescene = new WelcomeScene();
 		PlayerScene playerscene = new PlayerScene();
 		TutorialScene tutorialscene = new TutorialScene();
+		GameScene gamescene = new GameScene(playerscene.getP1Name().getText(),playerscene.getP2Name().getText());
+		WinningScene winningScene = new WinningScene("nond");
 		
 		Scene Wscene = new Scene(welcomescene);
 		Scene Pscene = new Scene(playerscene);
 		Scene TScene = new Scene(tutorialscene);
+		Scene Gscene = new Scene(gamescene);
+		Scene WNscene = new Scene(winningScene);
 		
 		welcomescene.getPlayButton().setOnAction(new EventHandler<ActionEvent>() {
 			
@@ -53,9 +57,9 @@ public class Main extends Application {
 			@Override
 			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				GameScene gamescene = new GameScene(playerscene.getP1Name().getText(),
-						playerscene.getP2Name().getText());
-				stg.setScene(new Scene(gamescene));
+				stg.setScene(Gscene);
+				startGameTimer = true;
+				System.out.println("Timer starts.");
 			}
 		}); 
 		
@@ -85,10 +89,11 @@ public class Main extends Application {
 				// TODO Auto-generated method stub
 				System.out.println("Welcome " + playerscene.getP1Name().getText() + "!");
 				System.out.println("Welcome " + playerscene.getP2Name().getText() + "!");
-				
-				GameScene gamescene = new GameScene(playerscene.getP1Name().getText(),
-						playerscene.getP2Name().getText());
-				stg.setScene(new Scene(gamescene));
+
+				stg.setScene(Gscene);
+				startGameTimer = true;
+				System.out.println("Timer starts.");
+//				System.out.println(startGameTimer);
 			}
 		});
 		
@@ -100,6 +105,28 @@ public class Main extends Application {
 				stg.setScene(Wscene);
 			}
 		});
+		
+//		Thread gameSceneTimer = new Thread(new Runnable() {
+//			
+//			@Override
+//			public void run() {
+//				// TODO Auto-generated method stub
+//				if (startGameTimer) {
+//					try {
+//						Thread.sleep(5000 + 1000);
+//						System.out.println("yay");
+//						// "yay" was printed but no scene had been set; will find another way.
+//						stg.setScene(WNscene);
+//						
+//					} catch (Exception e) {
+//						// TODO: handle exception
+//					}
+//				}
+//			}
+//		});
+//		gameSceneTimer.start();
+		
+		
 		
 		stg.setTitle("Hockey Game");
 		stg.setScene(Wscene);

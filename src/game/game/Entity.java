@@ -4,7 +4,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.geometry.*;
 import javafx.scene.image.Image;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
 
 public abstract class Entity {
 	

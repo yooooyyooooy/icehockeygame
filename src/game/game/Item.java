@@ -2,7 +2,7 @@ package game.game;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+//import javafx.scene.image.ImageView;
 
 public class Item extends Entity {
 	protected String name;
