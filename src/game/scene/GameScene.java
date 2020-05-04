@@ -53,31 +53,37 @@ public class GameScene extends StackPane {
 					addListener();
 					
 				}else {
-					playVideo();
+//					playVideo();
 					isStarted = true;
 				}
 				
-				ball.move(gc);
-				sticks.draw(gc);
-				
 				sticks.move(gc);
 			
-				sticks.hit(ball);		
+				if(sticks.hit(ball)) {
+					
+					gc.clearRect(sticks.getX_pos1()-30, sticks.getY_pos1()-30, 70, 130);
+					gc.clearRect(sticks.getX_pos2()-30, sticks.getY_pos2()-30, 70, 130);
+					sticks.move(gc);
+				}
+				
+				ball.move(gc);
 				
 				ball.bounce(gc);
-				
 				if(ball.isWinning(gc)) {
-					if (ball.getX_coordinate() <= 60){
+					if (ball.collidewithWall_Y(gc) && ball.getX_coordinate() < canvas.getWidth()/2){
 						player.setScore2(player.getScore2() + 1);
 						System.out.println("Score: " + player.getScore1() + ", " + player.getScore2());
 						System.out.println(player.getName1());
 						reset(gc, sticks.getX1_reset() + 40);
-					}else if (ball.getX_coordinate() >= gc.getCanvas().getWidth()-80) {
+					}
+					
+					else if (ball.collidewithWall_Y(gc) && ball.getX_coordinate() > canvas.getWidth()/2) {
 						player.setScore1(player.getScore1() + 1);
 						System.out.println("Score: " + player.getScore1() + ", " + player.getScore2());
 						System.out.println(player.getName2());
 						reset(gc, sticks.getX2_reset() - 70);
 					}
+					
 					isStarted = false;
 				}
 			}
@@ -85,7 +91,7 @@ public class GameScene extends StackPane {
 		
 		animation.start();
 		
-		this.getChildren().addAll(canvas, ResourceHolder.threeSecWaiting);
+		this.getChildren().addAll(canvas);
 	
 	}
 

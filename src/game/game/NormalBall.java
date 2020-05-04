@@ -1,8 +1,5 @@
 package game.game;
 
-import java.lang.Math;
-
-
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -26,21 +23,6 @@ public class NormalBall extends Entity implements Movable, Transitionable {
 	public void move(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		draw(gc);
-	}
-	
-	
-	@Override
-	public void bounce(GraphicsContext gc) {
-		// TODO Auto-generated method stub
-
-		if(collidewithWall_X(gc)) {
-				this.setYspeed(-(this.getYspeed()));
-		  }
-		
-//		if(collidewithWall_Y(gc)) {
-//				this.setXspeed(-(this.getXspeed()));
-//		  }
-	
 	}
 	
 	public boolean isWinning(GraphicsContext gc) {

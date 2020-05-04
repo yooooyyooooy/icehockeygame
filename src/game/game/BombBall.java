@@ -27,3 +27,4 @@ public class BombBall extends Entity implements Movable{
 	}
 
 }
+

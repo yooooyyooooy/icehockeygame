@@ -29,7 +29,4 @@ public class InputUtility {
 	public static void setKeysPressed(ArrayList<KeyCode> keysPressed) {
 		InputUtility.keysPressed = keysPressed;
 	}
-
-	
-	
 }
