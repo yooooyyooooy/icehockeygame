@@ -1,14 +1,15 @@
 package game.game;
 
-
+import game.exception.*;
 import game.input.*;
+import game.sharedObject.ResourceHolder;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 
 
-public class Sticks implements Movable{
+public class Sticks implements IMovable{
 	private final int instant_speed = 3;
 	private final double x1_reset;
 	private final double y1_reset;
@@ -40,6 +41,7 @@ public class Sticks implements Movable{
 		gc.fillRoundRect(this.getX_pos2(), this.getY_pos2(), 10, 70, 20, 20);
 		
 	}
+	
 	
 	@Override
 	public void move(GraphicsContext gc) {
@@ -86,6 +88,7 @@ public class Sticks implements Movable{
 	
 	public boolean hit(Entity ball) {
 		if(ball.collideWithSide1(this)) {
+			ResourceHolder.bounceSound.play();
 			this.setX_speed1(0);
 			if(ball.getXspeed() == 0){
 				ball.setXspeed(ball.instant_speed);
@@ -99,11 +102,12 @@ public class Sticks implements Movable{
 			}else if(ball.getX_coordinate() < getX_pos1()) {
 				ball.setX_coordinate(x_pos1-30-instant_speed);
 			}
-			System.out.println("1");
+			ballFailedMoveException.ball_movements.add('1');
 			return true;
 		}
 		
-		if(ball.collideWithTopOrButtom1(this) == "TOP") {
+		if(ball.collideWithTopOrBottom1(this) == "TOP") {
+			ResourceHolder.bounceSound.play();
 			if(ball.getYspeed() == 0){
 				ball.setXspeed(ball.instant_speed);
 				ball.setYspeed(-ball.instant_speed);
@@ -111,13 +115,13 @@ public class Sticks implements Movable{
 				ball.setYspeed(-(ball.getYspeed()));
 			}
 	
-			ball.setY_coordinate(y_pos1-30-instant_speed);
-			System.out.println("3");
+			ballFailedMoveException.ball_movements.add('3');
 			this.setY_speed1(0);
 			return true;
 		}
 		
-		if(ball.collideWithTopOrButtom1(this) == "BUTTOM") {
+		if(ball.collideWithTopOrBottom1(this) == "BOTTOM") {
+			ResourceHolder.bounceSound.play();
 			if(ball.getYspeed() == 0){
 				ball.setXspeed(ball.instant_speed);
 				ball.setYspeed(ball.instant_speed);
@@ -125,13 +129,13 @@ public class Sticks implements Movable{
 				ball.setYspeed(-(ball.getYspeed()));
 			}
 			
-			ball.setY_coordinate(y_pos1+70+instant_speed);
-			System.out.println("4");
+			ballFailedMoveException.ball_movements.add('4');
 			this.setY_speed1(0);
 			return true;
 		}
 		
 		if(ball.collideWithSide2(this)) {
+			ResourceHolder.bounceSound.play();
 			if(ball.getXspeed() == 0){
 				ball.setXspeed(-ball.instant_speed);
 				ball.setYspeed(ball.instant_speed);
@@ -144,14 +148,14 @@ public class Sticks implements Movable{
 			}else if(ball.getX_coordinate() < getX_pos2()) {
 				ball.setX_coordinate(x_pos2-30-instant_speed);
 			}
-			System.out.println("2");
+			ballFailedMoveException.ball_movements.add('2');
 			this.setX_speed2(0);
 			return true;
 		}
 		
 		
-		if(ball.collideWithTopOrButtom2(this) == "TOP") {
-			
+		if(ball.collideWithTopOrBottom2(this) == "TOP") {
+			ResourceHolder.bounceSound.play();
 			if(ball.getYspeed() == 0){
 				ball.setXspeed(-this.instant_speed);
 				ball.setYspeed(-this.instant_speed);
@@ -159,13 +163,13 @@ public class Sticks implements Movable{
 				ball.setYspeed(-(ball.getYspeed()));
 			}
 			
-			ball.setY_coordinate(y_pos2-30-instant_speed);
-			System.out.println("5");
+			ballFailedMoveException.ball_movements.add('5');
 			this.setY_speed2(0);
 			return true;
 		}
 		
-		if(ball.collideWithTopOrButtom2(this) == "BUTTOM") {
+		if(ball.collideWithTopOrBottom2(this) == "BOTTOM") {
+			ResourceHolder.bounceSound.play();
 			if(ball.getYspeed() == 0){
 				ball.setXspeed(-ball.instant_speed);
 				ball.setYspeed(ball.instant_speed);
@@ -173,8 +177,7 @@ public class Sticks implements Movable{
 				ball.setYspeed(-(ball.getYspeed()));
 			}
 			
-			ball.setY_coordinate(y_pos2+70+instant_speed);
-			System.out.println("6");	
+			ballFailedMoveException.ball_movements.add('6');
 			this.setY_speed2(0);
 			return true;
 		}
@@ -307,7 +310,7 @@ public class Sticks implements Movable{
         return new Rectangle2D(getX_pos1(), getY_pos1()-5, 10, 5);
     }
 	
-	public Rectangle2D getBoundaryButtom1() {
+	public Rectangle2D getBoundaryBottom1() {
         return new Rectangle2D(getX_pos1(), getY_pos1()+70, 10, 5);
     }
 
@@ -319,8 +322,7 @@ public class Sticks implements Movable{
         return new Rectangle2D(getX_pos2(), getY_pos2()-5, 10, 5);
     }
 	
-	public Rectangle2D getBoundaryButtom2() {
+	public Rectangle2D getBoundaryBottom2() {
         return new Rectangle2D(getX_pos2(), getY_pos2()+70, 10, 5);
     }
 }
-	

@@ -19,7 +19,6 @@ public class InputUtility {
 		}else{
 			keysPressed.remove(keycode);
 		}
-//		System.out.println(keysPressed);
 	}
 
 	public static ArrayList<KeyCode> getKeysPressed() {
@@ -29,4 +28,7 @@ public class InputUtility {
 	public static void setKeysPressed(ArrayList<KeyCode> keysPressed) {
 		InputUtility.keysPressed = keysPressed;
 	}
+
+	
+	
 }

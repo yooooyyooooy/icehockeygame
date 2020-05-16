@@ -1,50 +1,53 @@
 package game.game;
 
+import game.sharedObject.ResourceHolder;
+
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-//import javafx.scene.image.ImageView;
 
 public class Item extends Entity {
-	protected String name;
-	protected String url;
 	
-	public Item(double x, double y, String name) {
+	
+	public Item(GraphicsContext gc) {
 		// TODO Auto-generated constructor stub
-		super(x,y);
-			
-		switch(name) {
-			case "Bomb":
-				this.setName("Bomb");
-				this.setUrl("bomb.png");
-				
-				
-			case "Ghost":
-				this.setName("Ghost");
-				this.setUrl("ghost.png");
-		}
-		super.setImg((new Image(this.getUrl())));
-	}
-	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public String getUrl() {
-		return url;
+		super(-50, 0);
+		super.setImg(ResourceHolder.bombItem);
+		
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public boolean collideWithBall(Entity other) {
+		return other.getBoundary().intersects(this.getBoundary());
+	}
+	
+	public void randomDraw(GraphicsContext gc) {
+		setX_coordinate(gc);
+		setY_coordinate(gc);
+		gc.drawImage(getImg(), getX_coordinate(), getY_coordinate());
+	}
+	
+	public void setX_coordinate(GraphicsContext gc) {
+		this.x_coordinate = Math.random()*((gc.getCanvas().getWidth())-400)+200;
+	}
+	
+	public void setY_coordinate(GraphicsContext gc) {
+		this.y_coordinate = Math.random()*((gc.getCanvas().getHeight())-200)+100;
+	}
+	
+	public void clearItem(GraphicsContext gc) {
+		gc.clearRect(getX_coordinate(), getY_coordinate(), this.getImg().getWidth(), this.getImg().getHeight());
+		setX_coordinate(-50);
+		setY_coordinate(0);
 	}
 
 	@Override
 	public void bounce(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		
+		return;
 	}
 
+	@Override
+	public boolean isWinning(GraphicsContext gc) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 }

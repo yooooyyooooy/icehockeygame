@@ -3,7 +3,7 @@ package game.game;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.geometry.*;
 import javafx.scene.image.Image;
-import javafx.scene.shape.Circle;
+
 
 public abstract class Entity {
 	
@@ -19,14 +19,8 @@ public abstract class Entity {
 		this.setY_coordinate(y);
 	}
 	
-	public void bounce(GraphicsContext gc) {
-		if(collidewithWall_X(gc) == "TOP") {
-				this.setYspeed(instant_speed);	
-		  }
-		if(collidewithWall_X(gc) == "BUTTOM") {
-			this.setYspeed(-instant_speed);
-		}
-	}
+	public abstract void bounce(GraphicsContext gc);
+	public abstract boolean isWinning(GraphicsContext gc);
 	
 	public void draw(GraphicsContext gc) {
 		
@@ -34,11 +28,9 @@ public abstract class Entity {
 		this.setY_coordinate((int)(this.getY_coordinate()+this.getYspeed()));
 		this.setX_coordinate((int)(this.getX_coordinate()+this.getXspeed()));
 		gc.drawImage(this.getImg(), this.getX_coordinate(), this.getY_coordinate());
+		
 	}
 	
-	public Circle getRoundBoundary() {
-		return new Circle(getX_coordinate()+15, getY_coordinate()+15, 14);
-	}
 	public Rectangle2D getBoundary() {
         return new Rectangle2D(getX_coordinate(), getY_coordinate(), getImg().getWidth(), getImg().getHeight());
     }
@@ -47,11 +39,11 @@ public abstract class Entity {
 		return other.getBoundarySide1().intersects(this.getBoundary());
 	}
 	
-	public String collideWithTopOrButtom1(Sticks other) {
+	public String collideWithTopOrBottom1(Sticks other) {
 		if(other.getBoundaryTop1().intersects(this.getBoundary())) {
 			return "TOP";
-		}else if(other.getBoundaryButtom1().intersects(this.getBoundary())) {
-			return "BUTTOM";
+		}else if(other.getBoundaryBottom1().intersects(this.getBoundary())) {
+			return "BOTTOM";
 		}
 		return "NOT HIT";
 		
@@ -61,11 +53,11 @@ public abstract class Entity {
 		return other.getBoundarySide2().intersects(this.getBoundary());
 	}
 	
-	public String collideWithTopOrButtom2(Sticks other) {
+	public String collideWithTopOrBottom2(Sticks other) {
 		if(other.getBoundaryTop2().intersects(this.getBoundary())) {
 			return "TOP";
-		}else if(other.getBoundaryButtom2().intersects(this.getBoundary())) {
-			return "BUTTOM";
+		}else if(other.getBoundaryBottom2().intersects(this.getBoundary())) {
+			return "BOTTOM";
 		}
 		return "NOT HIT";
 		
@@ -79,18 +71,32 @@ public abstract class Entity {
 			return "TOP";
 		}
 		else if(wallButtom.intersects(this.getBoundary()))  {
-			return "BUTTOM";
+			return "BOTTOM";
 		}
 		return "NOT HIT";
 	}
 	
 	public boolean collidewithWall_Y(GraphicsContext gc) {
 		Rectangle2D wallLeft = new Rectangle2D(45, 0, 5, gc.getCanvas().getHeight());
-		Rectangle2D wallRight = new Rectangle2D(gc.getCanvas().getWidth()-50, 0, 5, gc.getCanvas().getHeight());
+		Rectangle2D wallRight = new Rectangle2D(gc.getCanvas().getWidth()-45, 0, 5, gc.getCanvas().getHeight());
 		
 		
 		return wallRight.intersects(this.getBoundary()) ||
 				   wallLeft.intersects(this.getBoundary());
+	}
+	
+	public boolean collidewithBricksLeft(GraphicsContext gc) {
+		Rectangle2D wallLeft = new Rectangle2D(50, 0, 5, gc.getCanvas().getHeight());
+		
+		
+		return wallLeft.intersects(this.getBoundary());
+	}
+	
+	public boolean collidewithBricksRight(GraphicsContext gc) {
+		Rectangle2D wallRight = new Rectangle2D(gc.getCanvas().getWidth()-50, 0, 5, gc.getCanvas().getHeight());
+		
+		
+		return wallRight.intersects(this.getBoundary());
 	}
 	
 	public Image getImg() {
@@ -135,6 +141,8 @@ public abstract class Entity {
 		this.y_coordinate = y_coordinate;
 	}
 
-	
+	public int getInstantSpeed() {
+		return instant_speed;
+	}
 	
 }
