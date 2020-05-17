@@ -1,6 +1,7 @@
 package SceneController;
 
 
+import game.input.InputUtility;
 import game.scene.GameScene;
 import game.scene.PlayerScene;
 import game.scene.TutorialScene;
@@ -46,6 +47,7 @@ public class SceneController {
 	}
 	
 	public static void setWinningScene(String name) {
+		InputUtility.getKeysPressed().clear();
 		WinningScene winningScene = new WinningScene(name);
 		Scene WScene = new Scene(winningScene);
 		ResourceHolder.gamethemeSongs.stop();

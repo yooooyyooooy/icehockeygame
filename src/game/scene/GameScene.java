@@ -75,6 +75,7 @@ public class GameScene extends StackPane {
 			public void handle(long now) {
 				// TODO Auto-generated method stub
 				try {
+					
 					clock.draw(gc);
 					clock.updateCooldown(gc, player1.getSkill().getMaxCooldown(), 
 							activatedTime1, player2.getSkill().getMaxCooldown(), activatedTime2);
@@ -245,6 +246,10 @@ public class GameScene extends StackPane {
 		if (random == 1 && !isOnCooldown1 && !isOnCooldown2) {
 			item.randomDraw(gc);
 		}
+		
+		if(this.getChildren().contains(ResourceHolder.freezingEffect)) {
+	  		this.getChildren().remove(ResourceHolder.freezingEffect);
+		}
 
 	}
 	
@@ -267,13 +272,11 @@ public class GameScene extends StackPane {
 		}
 
 		if (ball.getX_coordinate() < canvas.getWidth() / 2 && ball instanceof BombBall) {
-//			ResourceHolder.bombExplosionSound.play();
 			player2.setScore(player2.getScore() + 1);
 			System.out.println("Score: " + player1.getScore() + ", " + player2.getScore());
 			System.out.println(player2.getName() + " scores");
 			reset(gc, sticks.getX1_reset() + 40);
 		} else if (ball.getX_coordinate() > canvas.getWidth() / 2 && ball instanceof BombBall) {
-//			ResourceHolder.bombExplosionSound.play();
 			player1.setScore(player1.getScore() + 1);
 			System.out.println("Score: " + player1.getScore() + ", " + player2.getScore());
 			System.out.println(player1.getName() + " scores");
@@ -324,17 +327,18 @@ public class GameScene extends StackPane {
 		  
 		  if(player1.getSkill() instanceof FreezingSkill) {
 		   
-		   if(player1.getSkill().isReady1(activatedTime1)) {
+			  if(player1.getSkill().isReady1(activatedTime1)) {
 			    activatedTime1 = 0;
 			    isOnCooldown1 = true;
 			    player1.getSkill().activate(ball, "player1", gc);
+			    
 			    if(!this.getChildren().contains(ResourceHolder.freezingEffect)) {
 			    	this.getChildren().add(ResourceHolder.freezingEffect);
 			    }
 			   }
 		   
-		   if(activatedTime1 == IActivatable.duration) {
-		    player1.getSkill().deactivate(ball);
+			  if(activatedTime1 == IActivatable.duration) {
+				  	player1.getSkill().deactivate(ball);
 		   }
 		   
 		  }
@@ -346,20 +350,21 @@ public class GameScene extends StackPane {
 				    isOnCooldown2 = true;
 				    System.out.println(ball.collidewithBricksRight(gc));
 				    player2.getSkill().activate(ball, "player2", gc);
+				    
 				    if(!this.getChildren().contains(ResourceHolder.freezingEffect)) {
 				    	this.getChildren().add(ResourceHolder.freezingEffect);
 				    }
 			   }
 		   
-		   if(activatedTime2 == IActivatable.duration) {
-			   player2.getSkill().deactivate(ball);
-		   }
+			   if(activatedTime2 == IActivatable.duration) {
+				   player2.getSkill().deactivate(ball);
+			   }
 		  }
 		  
-		  if((ball.getXspeed() == ball.getInstantSpeed() || ball.getXspeed() == -ball.getInstantSpeed() || 
-		    ball.getYspeed() == ball.getInstantSpeed() || ball.getYspeed() == -ball.getInstantSpeed()) || (ball.getXspeed() == 0 && ball.getYspeed() == 0)) {
-			  if(this.getChildren().contains(ResourceHolder.freezingEffect)) {
-				  this.getChildren().remove(ResourceHolder.freezingEffect);
+		  if(ball.getXspeed() == ball.getInstantSpeed() || ball.getXspeed() == -ball.getInstantSpeed() || 
+		    ball.getYspeed() == ball.getInstantSpeed() || ball.getYspeed() == -ball.getInstantSpeed()) {
+			  	if(this.getChildren().contains(ResourceHolder.freezingEffect)) {
+			  		this.getChildren().remove(ResourceHolder.freezingEffect);
 		   }   
 		  }
 		  
@@ -388,7 +393,6 @@ public class GameScene extends StackPane {
 			}
 
 			if (isOnCooldown2 && activatedTime2 >= 0 && activatedTime2 < 2) {
-				System.out.println("here");
 				player2.getSkill().activate(ball, "player2", gc);
 
 			}
