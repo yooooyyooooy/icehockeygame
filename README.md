@@ -1,2 +1,2 @@
-# Ice Hockey Game Poject
+# Ice Hockey Game Project
 
